@@ -29,7 +29,10 @@ def convert(md):
                 i += 1
             out.append("<table><thead><tr>" + "".join(f"<th>{inline(c)}</th>" for c in head) + "</tr></thead><tbody>")
             for r in rows:
-                out.append("<tr>" + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>")
+                cells = "".join(
+                    '<td data-label="%s">%s</td>' % (html.escape(head[k] if k < len(head) else "", quote=True), inline(c))
+                    for k, c in enumerate(r))
+                out.append("<tr>" + cells + "</tr>")
             out.append("</tbody></table>")
             continue
 
@@ -90,6 +93,23 @@ strong{color:#0d1a24}
  th{background:#1d2731;color:#a9b7c4;border-color:#2c3844} td{border-color:#222d38}
  tbody tr:nth-child(even){background:#1a232d} code{background:#1d2731;border-color:#2c3844}
  strong{color:#fff} a{color:#6db3ec;border-color:#2a4256}
+}
+@media(max-width:640px){
+ body{padding:14px 8px} .doc{padding:18px 14px 20px;border-radius:8px}
+ h1{font-size:21px} h2{font-size:17px;margin:22px 0 10px} h3{font-size:15px}
+ p,li{font-size:13.8px} blockquote{font-size:13px;padding:8px 11px}
+ pre{font-size:12px;padding:11px 12px}
+ table{display:block;border:none} thead{display:block}
+ thead tr{display:flex;flex-wrap:wrap;gap:6px}
+ thead th{display:inline-block;border:1px solid #dbe2ea;border-radius:16px;padding:5px 11px;font-size:12px;background:#f7f9fc;white-space:normal}
+ tbody{display:block}
+ tbody tr{display:block;border:1px solid #dbe2ea;border-radius:8px;padding:10px 12px;margin-top:9px;background:#fff!important}
+ tbody td{display:grid;grid-template-columns:84px 1fr;gap:8px;border:none;padding:3px 0;font-size:12.8px;text-wrap:pretty;word-break:break-word}
+ tbody td::before{content:attr(data-label);color:#6b7a89;font-size:11.6px;font-weight:700}
+}
+@media(prefers-color-scheme:dark) and (max-width:640px){
+ tbody tr{background:#1a232d!important;border-color:#2c3844}
+ thead th{background:#1d2731;border-color:#2c3844}
 }
 """
 

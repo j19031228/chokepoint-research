@@ -32,7 +32,7 @@
   tbody tr:nth-child(even){background:#fbfcfe}
   ul,ol{margin:9px 0 9px 22px;font-size:14px}
   li{margin:5px 0}
-  .flow{background:#f7f9fc;border:1px dashed #cdd8e3;border-radius:8px;padding:14px 16px;font-size:13.2px;line-height:2;color:#3c4a58;white-space:pre;overflow-x:auto;font-family:Consolas,"Microsoft YaHei",monospace}
+  .flow{background:#f7f9fc;border:1px dashed #cdd8e3;border-radius:8px;padding:14px 16px;font-size:13.2px;line-height:2;color:#3c4a58;white-space:pre-wrap;word-break:break-word;font-family:Consolas,"Microsoft YaHei",monospace}
   .note{background:#fff4e0;border:1px solid #ffd9a0;color:#8a4b00;border-radius:8px;padding:11px 14px;font-size:13px;margin:12px 0;line-height:1.75}
   .ok{background:#e9f7ee;border:1px solid #b8e2c6;color:#155e2f}
   .bad{background:#fdeceb;border:1px solid #f5c6c2;color:#9b2d25}
@@ -50,7 +50,7 @@
   .lv:hover{background:#eef4fb}
   .lv.l3{border-left-color:var(--red)} .lv.l2{border-left-color:var(--orange)}
   .lv.l1{border-left-color:var(--yellow)} .lv.l0{border-left-color:#c3ccd6}
-  .lv .name{font-weight:700;font-size:13.5px} .lv .desc{font-size:12.8px;color:#41505f}
+  .lv .name{font-weight:700;font-size:13.5px} .lv .desc{font-size:12.8px;color:#41505f;text-wrap:pretty;word-break:break-word}
   .lv .tag{font-size:11.5px;font-weight:700;text-align:right}
   .lv .detail{grid-column:1/-1;display:none;font-size:12.5px;color:#3c4a58;border-top:1px dashed #d3dce6;padding-top:8px;margin-top:2px;line-height:1.75}
   .lv.open .detail{display:block}
@@ -64,9 +64,29 @@
   details .body{font-size:13px;color:#3c4a58;margin-top:9px;line-height:1.8}
   .foot{font-size:11.5px;color:#7c8a98;margin-top:18px;line-height:1.7;text-align:center}
   @media(max-width:640px){
-    .lv{grid-template-columns:78px 1fr;row-gap:4px} .lv .tag{grid-column:1/-1;text-align:left}
-    th,td{font-size:12px;padding:7px 6px} .hd h1{font-size:19px} .page{padding:16px 14px 20px}
-    .tabs button{padding:9px 14px;font-size:13px}
+    body{padding:10px 8px 34px}
+    .hd{padding:16px 15px} .hd h1{font-size:19px} .hd .meta{font-size:12px}
+    .page{padding:16px 14px 22px}
+    .tabs{gap:6px} .tabs button{padding:9px 14px;font-size:13px;flex:1;text-align:center}
+    .lv{grid-template-columns:70px 1fr;row-gap:4px} .lv .tag{grid-column:1/-1;text-align:left}
+    h2{font-size:16.5px} h3{font-size:14.5px} p,ul,ol,li{font-size:13.5px}
+    .lead{font-size:14px;padding:11px 13px} .quote{font-size:13px;padding:12px 14px}
+    .cards{grid-template-columns:1fr} .card p{font-size:12.8px}
+    .ctrls .hint{display:none}
+    /* 表格:表头变胶囊按钮(仍可点排序),每行变一张卡片 —— 横向零溢出 */
+    table{display:block;border:none;margin:10px 0}
+    thead{display:block}
+    thead tr{display:flex;flex-wrap:wrap;gap:6px;border:none;background:none}
+    thead th{display:inline-block;border:1px solid var(--line);border-radius:16px;padding:5px 11px;font-size:12px;background:#f7f9fc;white-space:normal;font-weight:700}
+    tbody{display:block}
+    tbody tr{display:block;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:9px;background:#fff!important}
+    tbody td{display:grid;grid-template-columns:82px 1fr;gap:8px;align-items:start;border:none;padding:3px 0;font-size:12.7px;text-align:left!important;text-wrap:pretty;word-break:break-word}
+    tbody td::before{content:attr(data-label);color:var(--mute);font-size:11.6px;font-weight:700;line-height:1.65}
+    .flow{font-size:11.8px;line-height:1.9;padding:11px 12px}
+  }
+  @media(max-width:360px){
+    tbody td{grid-template-columns:76px 1fr;font-size:12.4px}
+    .hd h1{font-size:17.5px}
   }
 </style>
 </head>
@@ -75,7 +95,7 @@
 
   <div class="hd">
     <h1>「白毛股神」方法讲解 · <b>+ A股卡点面板</b></h1>
-    <div class="meta">供应链瓶颈(choke point)投资法 · 归纳自公开方法论与 10 个开源蒸馏项目(实读)<br>研究辅助,不构成投资建议</div>
+    <div class="meta">供应链瓶颈(choke point)投资法<br>基于他 6,592 条推文蒸馏的一手方法论 · 15 条原则 + 14 问清单<br>研究辅助,不构成投资建议</div>
   </div>
 
   <div class="tabs">
@@ -132,17 +152,59 @@
     </table>
     <p>他特别偏爱第二类里的<b>小市值</b>公司(理由:弹性大)。这也是风险最大的地方。</p>
 
-    <h2>二、完整知识体系<small>四步 + 六筛 + 两纪律</small></h2>
+    <h2>二、他真正的 15 条原则<small>从 6,592 条推文蒸馏的一手框架</small></h2>
+    <p>这些<b>是他自己反复在用的判断框架</b> —— 由一个开源项目从他全部推文里蒸馏而成,每条都能回到原推。<b>原则是耐用的部分,标的是会过期的部分</b>;所以下面学的是镜头,不是号码。</p>
+    <table>
+      <tr><th>#</th><th>原则</th><th>他找的信号</th><th>他的实例</th></tr>
+      <tr><td>1</td><td><b>瓶颈狩猎</b><br><span class="who">核心镜头</span></td><td>下游<b>必须花钱穿过、无法设计绕过</b>的单点:独家/准独家、有定价权、近期无合格替代、TAM 随 AI capex 放大、市值尚小。他刻意区分<b>产量</b>与<b>定价权</b> ——「你不需要多产 3000%,你只需要涨价」。</td><td>AXTI(InP 衬底),称其为 AI 产业的「霍尔木兹海峡」</td></tr>
+      <tr><td>2</td><td><b>多跳 BOM / 开源情报测绘</b></td><td>从云厂商 capex 一路串到原料,标出每层谁卡着。线索来源:会议 PPT(OFC/GTC)、投资者材料、SEC 文件、LinkedIn 招聘、创业公司官网的合作伙伴页变更、BOM 占比估算。<b>连接是多跳的,所以通用 AI 问答做不好这件事。</b></td><td>Ayar Labs 官网悄悄把 LITE、MTSI 从伙伴列表删掉、只留 SIVE → 早于任何新闻稿判断 Sivers 成为主激光供应商</td></tr>
+      <tr><td>3</td><td><b>已签合约 ARR vs 市值错配</b></td><td>用<b>已签的 take-or-pay 长约</b>隐含的未来收入定价,而不是滚动市盈率。签下长约 = 从"观察"变"高信念"。若 300%+ 的 ARR 合约只让股价动 45%,说明为融资而稀释的部分"已被定价",公告后的回落就是入场点。</td><td>NBIS 拿下微软 170 亿美元合约后:「50 美元之前是投机,现在是纯放量」</td></tr>
+      <tr><td>4</td><td><b>Mag7 客户集中度筛选</b></td><td>「<b>客户是谁</b>」是他最高优先级的过滤器。小盘股若系统性对接多家 Mag7 = 需求确定性的<b>正面</b>信号;但反向也成立 —— 单一客户集中是风险。</td><td>ALAB 打出的旗号是「唯一系统性供货 5 家 Mag7 的小盘股」</td></tr>
+      <tr><td>5</td><td><b>GAAP 毛利战</b></td><td>一律用 <b>GAAP 毛利</b>横向比较,不接受剔除股权激励、折旧、或只取单条业务线的口径。这里的市场低效是:如果多数人看 non-GAAP,那<b>诚实披露的公司会被系统性低估</b>。</td><td>IREN 宣称「92% 毛利」是硬件口径 non-GAAP,对比 NBIS 的 71.2% GAAP ——「NBIS 的质量被更诚实的披露掩盖了」</td></tr>
+      <tr><td>6</td><td><b>认证周期 vs 滚动收入</b></td><td>不要在放量前用当期财报判断一家公司。<b>在"认证阶段"进入</b>:设计中标、代工合作、指引措辞的变化。对前沿标的,要做的是拐点处的远期 TAM 模型,不是 TTM 收入模型。</td><td>SIVE、AEHR、LPK、AXTI 都是放量前进入的;原话:「除非有极坏的事,没人关心当期业绩」</td></tr>
+      <tr><td>7</td><td><b>稀释 / ATM 日历 = 一票否决</b></td><td>大额在售增发(ATM),尤其叠加高管股权激励,视为<b>结构性扣分</b> —— 散户的股权被稀释去为扩产买单。要区分<b>破坏性稀释</b>(二级市场 ATM 抛售)与<b>可接受稀释</b>(小额一次性战略上市、战略投资人替你还债)。</td><td>IREN 60 亿美元 ATM ≈ 51% 稀释 → 被他称为「数据中心界的 AMC」;反向:SIVE 上市仅稀释 2.5%,视为正面</td></tr>
+      <tr><td>8</td><td><b>交易对手 / 融资质量谱系</b></td><td>同一个细分里,<b>租户的信用</b>和<b>融资结构</b>决定股价路径,而不只是经营。他的排序:英伟达注资+可转债 &gt; colo 模式(谷歌/亚马逊背书)&gt; ATM 融资 &gt; 高息信用债。把「OpenAI 是交易对手」的敞口单独标为风险。</td><td>2025-12 ORCL/CRWV 的「OpenAI 传染」抛售,他当作买入被 MSFT/META 背书的 NBIS、IREN 的机会</td></tr>
+      <tr><td>9</td><td><b>空头挤压设置</b><br><span class="who">盈利成长股版</span></td><td>一家<b>盈利且高增长</b>的公司背上高做空比例,是异常,会向上解决;而僵尸股的高做空比例是危险的。他把做空比例当<b>挤压计时器</b>,不当方向信号。</td><td>HIMS 42% 做空比例 ——「110 亿市值、盈利、快速增长,有创造历史的挤压潜力」</td></tr>
+      <tr><td>10</td><td><b>关税 / 宏观冲击即买点</b></td><td>宏观标题引发的板块普跌(-8%~-15%),若底层需求是<b>锁定多年的 capex</b>(12 个月内不因冲击改变),那是入场点。<b>但他明确要求区分</b>"算法性避险"和"基本面重估" —— 买前者,敬畏后者。</td><td>2025-10-10 关税升级,他在 98.8 美元加仓 NBIS LEAPS,称「2025 最好的入场点」。<b>反面教训:2026-03 伊朗冲突确实击穿了他依赖降息的 XLU/EWY 多头 —— 宏观改变利率路径时,逻辑会被打断。</b></td></tr>
+      <tr><td>11</td><td><b>机构滞后 / 暗池与资金流</b></td><td>散户可比机构<b>早 4–6 周</b>发现供应链卡点;X 上的讨论滞后基本面 1–3 天,机构研究滞后 2–4 周。<b>数据发布到叙事被消化之间的窗口,就是优势所在。</b></td><td>摩根士丹利最终持有 SOI 6.5%、Point72 买入 IQE —— 都发生在他公开发帖<b>之后</b></td></tr>
+      <tr><td>12</td><td><b>Vega / IV 错配</b><br><span class="who">期权结构</span></td><td>找那些做市商仍在用<b>陈旧历史波动率</b>定价的 ETF/指数 —— 它们的实际波动结构已经变了,然后买长期 LEAPS 赚波动率扩张。<b>他自己标注:高风险进阶操作,不理解结构不要抄。</b></td><td>EWY 2028 LEAPS 在 32% IV 买入(EWY 实质是 50%+ 三星/海力士),三个月 <b>+485%</b></td></tr>
+      <tr><td>13</td><td><b>信念分级 / 仓位 / 时机</b></td><td>S/A/B/C/D/F 显式分级 + 按信念定仓位;结果为二元的小盘股用小仓位;可能归零的(如出口禁令风险)用<b>期权而不是正股</b>。他反复警告:这些票一天能动 20%+,「小盘股不要高集中度」「先自己建立信念再进」。</td><td>AXTI 他选期权:「考虑到中国出口风险,<b>期权其实比正股更安全</b>」</td></tr>
+      <tr><td>14</td><td><b>他点名的反面模式</b></td><td>① 纯技术分析(「没有基本面/催化剂/宏观的 TA 是蛇油」)② 有头衔但不懂供应链层级的确定性发言 ③ 把内部人减持当看空信号(「最蠢的指标」)④ <b>混淆产业链层级</b>:衬底 ≠ 外延片 ≠ 原料;代工 ≠ 模块 ⑤ 看社媒情绪(「忽略它,通常是错的」)⑥ 追已经提前反应过的事件。</td><td>2026-06 他把彭博把台积电估值+英伟达上游链说成泡沫的报道,归为"BofA 那次失败的 KOSPI 泡沫论"重演</td></tr>
+      <tr><td>15</td><td><b>检查清单</b></td><td>见下一节 —— 可以拿去跑<b>任何</b>标的,包括他从没提过的公司。</td><td>—</td></tr>
+    </table>
+
+    <h2>三、14 问检查清单<small>拿去跑任何一只票</small></h2>
+    <p>对候选标的逐条打分,「是」越多越符合他的风格。<b>注意:这不是买入信号。</b></p>
+    <ol>
+      <li><b>是瓶颈吗?</b>是不是一条成长链条上的独家/准独家单点,近期无合格替代、有真实定价权?</li>
+      <li><b>在上游且便宜吗?</b>是不是位于明显「卖铲人」的上游,且其部件占下游 BOM 比例很小(所以买方宁愿接受涨价,也不愿砍 AI capex)?</li>
+      <li><b>链条够熟吗?</b>能不能不混淆层级地、从原料/输入层一路讲到模块或整机厂?<span class="who">这条是硬门槛:衬底、外延片、代工、激光器、收发器、模块/封装,他要求分清。</span></li>
+      <li><b>需求驱动是什么?</b>是随云厂商 AI capex(他的总领先指标)或物理 AI/机器人 capex 扩张,还是传统周期市场?</li>
+      <li><b>合约与交易对手?</b>有没有已签的多年合约?租户/客户信用够不够(AAA 云厂商 vs 烧钱的 AI 实验室)?</li>
+      <li><b>毛利是真的吗?</b>GAAP 毛利能不能支撑"优质"的说法(而不是精心挑选的 non-GAAP)?</li>
+      <li><b>融资质量?</b>有没有大额在售 ATM + 股权激励悬顶,或有问题的债务利息?(扣分项)还是稀释很小、属战略性质、或在偿还债务?</li>
+      <li><b>阶段在哪?</b>是放量前(认证阶段的设计中标),所以被 TTM 收入错误定价?还是已经很拥挤、被提前反应?</li>
+      <li><b>催化剂与时间?</b>可交易窗口内有没有<b>有日期的</b>催化剂(财报、会议、指数纳入、政策/行政令)?</li>
+      <li><b>市值还有空间吗?</b>是否小到机构重估仍在前方?</li>
+      <li><b>验证滞后?</b>机构/分析师覆盖是不是还落在供应链证据后面(是优势),还是已经进来了(已被定价)?</li>
+      <li><b>风险与仓位匹配?</b>结果有多二元(稀释、单一客户、中国出口、重组)?仓位要与之匹配,考虑有限风险的工具。</li>
+      <li><b>披露权重?</b>他是说持有、建了仓、回避,还是没有仓位?<b>「无仓位/探索性」的帖子应当只用来学习他的过程。</b></li>
+      <li><b>宏观叠加?</b>当前的利率路径/关税/战争状态,对<b>这个具体逻辑</b>是帮忙还是伤害?</li>
+    </ol>
+    <div class="note"><b>最后一步(他原文里的):</b>确认当前价格与基本面,用他的实战记录来定权重,并且<b>永远作为分析呈现,而不是作为指令</b>。</div>
+
+    <h2>四、完整知识体系<small>四步 + 六筛 + 两纪律</small></h2>
 
     <h3>第 1 步 · 拆链(自上而下五层)</h3>
     <table>
-      <tr><th>层级</th><th>内容</th><th>每层要记三件事</th></tr>
-      <tr><td>终端需求</td><td>云厂商 / 算力采购方</td><td rowspan="5"><b>玩家数量<br>扩产周期<br>认证周期</b><br><span class="who">这三个数字直接决定第 2 步能不能过</span></td></tr>
+      <tr><th>层级</th><th>内容</th></tr>
+      <tr><td>终端需求</td><td>云厂商 / 算力采购方</td></tr>
       <tr><td>系统集成</td><td>服务器整机 / 机柜 / 数据中心</td></tr>
       <tr><td>关键器件/芯片</td><td>GPU / ASIC / 光模块 / PCB / 电源</td></tr>
       <tr><td>上游材料/设备</td><td>衬底 / 玻纤布 / 铜箔 / 设备</td></tr>
       <tr><td>基础设施</td><td>供电 / 制冷 / 场地</td></tr>
     </table>
+    <p>每一层都要记三件事:<b>玩家数量 · 扩产周期 · 客户认证周期</b> —— 这三个数字直接决定第 2 步能不能过。</p>
 
     <h3>第 2 步 · 六把筛子(全过才算卡点)</h3>
     <table>
@@ -182,7 +244,7 @@
     <p><b>定性与数字分轨</b>:链上位置这类定性判断可以用标注过的推断;但<b>份额、市场空间、目标价这类数字结论必须有一手源</b>,否则留空。</p>
     <p><b>商业阶段六段</b>:研发 → 送样 → 客户认证 → 量产 → 有订单 → 已确认收入。<b>送样 ≠ 订单 ≠ 收入</b> —— 这是这类研究最高频的翻车点。</p>
 
-    <h2>三、反证与熔断<small>这套方法最值钱的部分</small></h2>
+    <h2>五、反证与熔断<small>这套方法最值钱的部分</small></h2>
     <p>大多数「荐股 prompt」只会告诉你为什么该涨。这套方法的核心纪律是:<b>先说清楚什么情况下它不成立。</b></p>
     <p>一个只能看多的框架,在任何时候都会得出「可以买」——那它等于没有信息量。</p>
 
@@ -212,7 +274,27 @@
     <p><b>读法</b>:当卡点持有者选择「不扩产」时,短期财务一定难看,股价也会先跌;但这恰恰是它<b>在维持议价权</b>的证据。要判断的是它在谈判桌上的位置,不是当期 EPS。</p>
     <p>这个信号的镜像就是:<b>业绩超预期但股价跌、资金撤退</b>,常常是「买预期卖事实」的阶段切换,而不是基本面变坏。</p>
 
-    <h2>四、六个翻车点与边界</h2>
+    <h2>六、代价与边界<small>这一节比前面所有内容都重要</small></h2>
+
+    <h3>先看他自己的回撤(2026 年 6 月,他亲口说的)</h3>
+    <ul>
+      <li>经历一次「巨大回撤」之后,他自嘲这套策略是「<b>多元化亏损</b>」。</li>
+      <li>同期市况:光子、太空、热门 AI、软件类篮子下跌约 <b>35–40%</b>;只有存储、指数、英特尔这类大盘半导体尚未崩。</li>
+      <li>他明说<b>「我不知道什么时候停」</b> —— 所以此时新的高 beta 加仓属于<b>时机敏感</b>动作,而不是逻辑获得确认。</li>
+      <li>关键教训(他自己总结的):<b>光/CPO 类的多个标的虽然公司各不相同,却共享同一因子暴露</b> → 要<b>按驱动因子分散,而不是按股票数量分散</b>。</li>
+    </ul>
+    <div class="note bad">这条直接推翻了「多买几只卡点股就算分散」的直觉。<b>同一条链上的卡点,涨的时候一起涨,被砍的时候一起被砍。</b></div>
+
+    <h3>他的收益数字该怎么读</h3>
+    <ul>
+      <li><b>全部是自述,未经审计</b> —— 包括那个广为流传的高倍收益。当营销材料看,不当业绩记录用。</li>
+      <li><b>公开的最好战绩集中且有时点特征</b> —— 例如 EWY 2028 LEAPS 三个月 +485%,那是"低 IV + 存储周期 + 杠杆期权"三重叠加的结果,不可复制为常态。</li>
+      <li><b>幸存者偏差</b> —— 被传播的是活下来的赢家;用同一套逻辑买进去、后来腰斩的案例不会有人转发。</li>
+      <li><b>期权部分是高风险进阶操作</b> —— 他自己明确标注过,不理解结构不要抄。</li>
+      <li>他本人反复说:<b>这些标的一天能动 20%+,小盘股不要高集中度,先自己建立信念再进</b>。他甚至开玩笑说自己这套叫"多元化亏损"。</li>
+    </ul>
+
+    <h3>六个高频翻车点</h3>
     <table>
       <tr><th>翻车点</th><th>怎么避免</th></tr>
       <tr><td>把「送样」当「订单」</td><td>商业阶段六段必须标清楚</td></tr>
@@ -223,20 +305,13 @@
       <tr><td>无源数字</td><td>每个数字跟来源 + 日期,否则留空</td></tr>
     </table>
 
-    <h3>关于本人,先厘清三件事</h3>
-    <ul>
-      <li><b>收益率是自述的,未经审计</b> —— 流传的「3800%」来自他本人公开材料,当营销文案看</li>
-      <li><b>持仓披露 ≠ 当前持仓</b> —— 公开说「看好」的时间和现在可能隔很久</li>
-      <li><b>有幸存者偏差</b> —— 传播的是活下来的赢家,被同一逻辑带进坑的不会传播</li>
-    </ul>
-
     <h3>这套方法不适用的情况</h3>
     <p>纯题材炒作、无实质产业逻辑的小票 ｜ 预测大盘走势 ｜ 需要精确估值(早期/亏损公司) ｜ 想找短期买卖点。</p>
 
     <h3>它真正给你的东西</h3>
     <div class="note ok">把「我觉得这个环节很关键」这种模糊感觉,变成<b>一张有来源、有分层、有反证条件、可以拿去被人挑战的纸</b>。<br>可被挑战,才有价值。</div>
 
-    <h2>五、GitHub 上同类项目对比<small>实读 10 个仓库</small></h2>
+    <h2>七、GitHub 上同类项目对比<small>实读 10 个仓库</small></h2>
     <table>
       <tr><th>仓库</th><th>star</th><th>市场</th><th>证据分级</th><th>反证条件</th><th>特色</th></tr>
       <tr><td>muxuuu/serenity-skill</td><td>~4000</td><td>A股/多市场</td><td>✅ 四级</td><td>✅</td><td>结构最完整的方法论包 + evals</td></tr>
@@ -353,6 +428,30 @@ document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{
   window.scrollTo(0,0);
 });
 
+/* ---- 响应式表格:规范化结构 + 给单元格打表头标签(窄屏变卡片用,零横向溢出) ---- */
+function normalizeTables(){
+  document.querySelectorAll("table").forEach(tb=>{
+    if(!tb.querySelector("thead")){
+      const first=tb.querySelector("tr");
+      if(first && first.querySelector("th") && !first.querySelector("td")){
+        const thead=document.createElement("thead");
+        thead.appendChild(first);
+        tb.insertBefore(thead, tb.firstChild);
+      }
+    }
+    if(!tb.querySelector("tbody")){
+      const tbody=document.createElement("tbody");
+      [...tb.children].forEach(ch=>{ if(ch.tagName==="TR") tbody.appendChild(ch); });
+      if(tbody.children.length) tb.appendChild(tbody);
+    }
+    const heads=[...tb.querySelectorAll("thead th")].map(th=>th.textContent.replace(/[▲▼]/g,"").trim());
+    tb.querySelectorAll("tbody tr").forEach(tr=>{
+      [...tr.children].forEach((cell,i)=>{ cell.dataset.label = heads[i] || ""; });
+    });
+  });
+}
+normalizeTables();
+
 /* ---- 面板数据 ---- */
 const CHAIN = [
   {lv:"l0",name:"终端需求",desc:"云厂商 / AI 算力集群 —— 全球 5–8 家",tag:"☆☆☆ 非卡点",
@@ -417,6 +516,7 @@ function render(){
       <td>${r.num}</td>
       <td class="who">${r.cn}</td>
     </tr>`).join("");
+  normalizeTables();
 }
 document.querySelectorAll("th.s").forEach(th=>th.onclick=()=>{
   const k=th.dataset.k;

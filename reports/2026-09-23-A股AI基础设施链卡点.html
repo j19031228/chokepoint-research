@@ -31,6 +31,23 @@ strong{color:#0d1a24}
  tbody tr:nth-child(even){background:#1a232d} code{background:#1d2731;border-color:#2c3844}
  strong{color:#fff} a{color:#6db3ec;border-color:#2a4256}
 }
+@media(max-width:640px){
+ body{padding:14px 8px} .doc{padding:18px 14px 20px;border-radius:8px}
+ h1{font-size:21px} h2{font-size:17px;margin:22px 0 10px} h3{font-size:15px}
+ p,li{font-size:13.8px} blockquote{font-size:13px;padding:8px 11px}
+ pre{font-size:12px;padding:11px 12px}
+ table{display:block;border:none} thead{display:block}
+ thead tr{display:flex;flex-wrap:wrap;gap:6px}
+ thead th{display:inline-block;border:1px solid #dbe2ea;border-radius:16px;padding:5px 11px;font-size:12px;background:#f7f9fc;white-space:normal}
+ tbody{display:block}
+ tbody tr{display:block;border:1px solid #dbe2ea;border-radius:8px;padding:10px 12px;margin-top:9px;background:#fff!important}
+ tbody td{display:grid;grid-template-columns:84px 1fr;gap:8px;border:none;padding:3px 0;font-size:12.8px;text-wrap:pretty;word-break:break-word}
+ tbody td::before{content:attr(data-label);color:#6b7a89;font-size:11.6px;font-weight:700}
+}
+@media(prefers-color-scheme:dark) and (max-width:640px){
+ tbody tr{background:#1a232d!important;border-color:#2c3844}
+ thead th{background:#1d2731;border-color:#2c3844}
+}
 </style></head>
 <body><div class="doc"><h1>A股 AI 基础设施产业链 · 卡点研究</h1>
 <ul><li>研究日期:2026-09-23(数据截止:各公司 2026 年半年报 / 2026 年 8 月机构数据)</li><li>研究范围:AI 算力基础设施全链,从供电制冷到光互连与上游材料</li><li>立场声明:<strong>研究辅助,非投资建议</strong>。分层标注规则见文末。</li><li>方法:6 路并行证据收集 + 关键数字回抽一手来源复核(中际旭创/天孚通信/日东纺三条已核)</li></ul>
@@ -63,46 +80,46 @@ strong{color:#0d1a24}
 <hr>
 <h2>2. 卡点六筛表</h2>
 <table><thead><tr><th>环节</th><th>①供应商数量</th><th>②扩产周期</th><th>③认证周期</th><th>④断供后果</th><th>⑤替代路线</th><th>⑥定价权</th><th>判定</th></tr></thead><tbody>
-<tr><td><strong>T-glass 低膨胀玻纤布</strong></td><td>日东纺 &gt;90%(实质 1 家)</td><td>24-36 月</td><td>12-24 月</td><td>ABF 载板停产</td><td>旭化成石英布 2026 起、2028 才成熟</td><td><strong>宣布不涨价</strong>(以份额优先)</td><td>★★★ 卡点</td></tr>
-<tr><td><strong>ABF 树脂膜</strong></td><td>味之素 &gt;95%(独家)</td><td>未查到</td><td>未查到</td><td>载板停产</td><td>未查到</td><td>未查到</td><td>★★★ 卡点(数据不足)</td></tr>
-<tr><td><strong>载体铜箔(可剥铜)</strong></td><td>三井 ~90%</td><td>24+ 月</td><td>长期</td><td>高阶 HDI 受阻</td><td>未查到</td><td>未查到</td><td>★★★ 卡点</td></tr>
-<tr><td><strong>InP 磷化铟衬底</strong></td><td>住友 42%/AXT 36%/JX 13%</td><td>24-36 月</td><td>12+ 月</td><td>光芯片停产</td><td>无成熟替代</td><td>价格随行就市</td><td>★★★ 卡点</td></tr>
-<tr><td><strong>高端 EML 光芯片</strong></td><td>美日 3 家占 65-70%</td><td>18-24 月</td><td>12-18 月</td><td>1.6T 模块无法交付</td><td>硅光可部分替代(1.6T 已放量)</td><td>交期 12-18 月、长协锁产能</td><td>★★☆ 卡点(硅光在解)</td></tr>
-<tr><td><strong>先进封装 CoWoS 类</strong></td><td>台积电 &gt;90%</td><td>24+ 月</td><td>—</td><td>AI 芯片出不来</td><td>无</td><td>缺口约 20%</td><td>★★☆ 卡点(非 A 股可达)</td></tr>
-<tr><td><strong>HBM</strong></td><td>三强垄断</td><td>24+ 月</td><td>—</td><td>加速器停产</td><td>无</td><td>2026 为价格盘整年</td><td>★★☆ 卡点(非 A 股可达)</td></tr>
-<tr><td><strong>SoC 测试机</strong></td><td>爱德万 65% + 泰瑞达 ≈90%</td><td>—</td><td>长</td><td>出不了货</td><td>国产在测</td><td>—</td><td>★★☆ 卡点</td></tr>
-<tr><td><strong>HVLP 铜箔(4-5 代)</strong></td><td>日韩 85-90%</td><td>18-24 月</td><td>12 月</td><td>高速板受阻</td><td>国产 2-3 代已上</td><td>高端紧缺</td><td>★★☆ 卡点</td></tr>
-<tr><td><strong>UQD 快接头</strong></td><td>CR5 &gt;70%(Staubli 30%)</td><td>12-24 月</td><td>12 月</td><td>液冷回路装不起来</td><td>有,但需重认证</td><td>国产良率低</td><td>★★ 结构性紧张</td></tr>
-<tr><td><strong>CDU</strong></td><td>10-20 家</td><td>12 月</td><td>12 月</td><td>交付延迟</td><td>有</td><td>订单排到年底</td><td>★★ 结构性紧张</td></tr>
-<tr><td><strong>高阶 PCB/CCL</strong></td><td>分散,CR10≈37.8%</td><td><strong>12-24 月(在扩)</strong></td><td>12 月</td><td>排产推迟</td><td>有</td><td>已连涨 7 次</td><td>★ 正在被填平</td></tr>
-<tr><td><strong>BBU 电芯</strong></td><td>松下 40%+三星SDI 37%</td><td>18 月</td><td>12 月</td><td>备电方案受限</td><td>国产送样中</td><td>—</td><td>★★ 结构性紧张</td></tr>
-<tr><td><strong>服务器电源</strong></td><td>台系前五占 4 家</td><td>12 月</td><td>12 月</td><td>可切换</td><td>有</td><td>台达过半</td><td>☆ 非卡点</td></tr>
-<tr><td><strong>液冷冷源/干冷器</strong></td><td>10-20 家</td><td>12 月</td><td>12 月</td><td>可切换</td><td>有</td><td>分散</td><td>☆ 非卡点</td></tr>
+<tr><td data-label="环节"><strong>T-glass 低膨胀玻纤布</strong></td><td data-label="①供应商数量">日东纺 &gt;90%(实质 1 家)</td><td data-label="②扩产周期">24-36 月</td><td data-label="③认证周期">12-24 月</td><td data-label="④断供后果">ABF 载板停产</td><td data-label="⑤替代路线">旭化成石英布 2026 起、2028 才成熟</td><td data-label="⑥定价权"><strong>宣布不涨价</strong>(以份额优先)</td><td data-label="判定">★★★ 卡点</td></tr>
+<tr><td data-label="环节"><strong>ABF 树脂膜</strong></td><td data-label="①供应商数量">味之素 &gt;95%(独家)</td><td data-label="②扩产周期">未查到</td><td data-label="③认证周期">未查到</td><td data-label="④断供后果">载板停产</td><td data-label="⑤替代路线">未查到</td><td data-label="⑥定价权">未查到</td><td data-label="判定">★★★ 卡点(数据不足)</td></tr>
+<tr><td data-label="环节"><strong>载体铜箔(可剥铜)</strong></td><td data-label="①供应商数量">三井 ~90%</td><td data-label="②扩产周期">24+ 月</td><td data-label="③认证周期">长期</td><td data-label="④断供后果">高阶 HDI 受阻</td><td data-label="⑤替代路线">未查到</td><td data-label="⑥定价权">未查到</td><td data-label="判定">★★★ 卡点</td></tr>
+<tr><td data-label="环节"><strong>InP 磷化铟衬底</strong></td><td data-label="①供应商数量">住友 42%/AXT 36%/JX 13%</td><td data-label="②扩产周期">24-36 月</td><td data-label="③认证周期">12+ 月</td><td data-label="④断供后果">光芯片停产</td><td data-label="⑤替代路线">无成熟替代</td><td data-label="⑥定价权">价格随行就市</td><td data-label="判定">★★★ 卡点</td></tr>
+<tr><td data-label="环节"><strong>高端 EML 光芯片</strong></td><td data-label="①供应商数量">美日 3 家占 65-70%</td><td data-label="②扩产周期">18-24 月</td><td data-label="③认证周期">12-18 月</td><td data-label="④断供后果">1.6T 模块无法交付</td><td data-label="⑤替代路线">硅光可部分替代(1.6T 已放量)</td><td data-label="⑥定价权">交期 12-18 月、长协锁产能</td><td data-label="判定">★★☆ 卡点(硅光在解)</td></tr>
+<tr><td data-label="环节"><strong>先进封装 CoWoS 类</strong></td><td data-label="①供应商数量">台积电 &gt;90%</td><td data-label="②扩产周期">24+ 月</td><td data-label="③认证周期">—</td><td data-label="④断供后果">AI 芯片出不来</td><td data-label="⑤替代路线">无</td><td data-label="⑥定价权">缺口约 20%</td><td data-label="判定">★★☆ 卡点(非 A 股可达)</td></tr>
+<tr><td data-label="环节"><strong>HBM</strong></td><td data-label="①供应商数量">三强垄断</td><td data-label="②扩产周期">24+ 月</td><td data-label="③认证周期">—</td><td data-label="④断供后果">加速器停产</td><td data-label="⑤替代路线">无</td><td data-label="⑥定价权">2026 为价格盘整年</td><td data-label="判定">★★☆ 卡点(非 A 股可达)</td></tr>
+<tr><td data-label="环节"><strong>SoC 测试机</strong></td><td data-label="①供应商数量">爱德万 65% + 泰瑞达 ≈90%</td><td data-label="②扩产周期">—</td><td data-label="③认证周期">长</td><td data-label="④断供后果">出不了货</td><td data-label="⑤替代路线">国产在测</td><td data-label="⑥定价权">—</td><td data-label="判定">★★☆ 卡点</td></tr>
+<tr><td data-label="环节"><strong>HVLP 铜箔(4-5 代)</strong></td><td data-label="①供应商数量">日韩 85-90%</td><td data-label="②扩产周期">18-24 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">高速板受阻</td><td data-label="⑤替代路线">国产 2-3 代已上</td><td data-label="⑥定价权">高端紧缺</td><td data-label="判定">★★☆ 卡点</td></tr>
+<tr><td data-label="环节"><strong>UQD 快接头</strong></td><td data-label="①供应商数量">CR5 &gt;70%(Staubli 30%)</td><td data-label="②扩产周期">12-24 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">液冷回路装不起来</td><td data-label="⑤替代路线">有,但需重认证</td><td data-label="⑥定价权">国产良率低</td><td data-label="判定">★★ 结构性紧张</td></tr>
+<tr><td data-label="环节"><strong>CDU</strong></td><td data-label="①供应商数量">10-20 家</td><td data-label="②扩产周期">12 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">交付延迟</td><td data-label="⑤替代路线">有</td><td data-label="⑥定价权">订单排到年底</td><td data-label="判定">★★ 结构性紧张</td></tr>
+<tr><td data-label="环节"><strong>高阶 PCB/CCL</strong></td><td data-label="①供应商数量">分散,CR10≈37.8%</td><td data-label="②扩产周期"><strong>12-24 月(在扩)</strong></td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">排产推迟</td><td data-label="⑤替代路线">有</td><td data-label="⑥定价权">已连涨 7 次</td><td data-label="判定">★ 正在被填平</td></tr>
+<tr><td data-label="环节"><strong>BBU 电芯</strong></td><td data-label="①供应商数量">松下 40%+三星SDI 37%</td><td data-label="②扩产周期">18 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">备电方案受限</td><td data-label="⑤替代路线">国产送样中</td><td data-label="⑥定价权">—</td><td data-label="判定">★★ 结构性紧张</td></tr>
+<tr><td data-label="环节"><strong>服务器电源</strong></td><td data-label="①供应商数量">台系前五占 4 家</td><td data-label="②扩产周期">12 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">可切换</td><td data-label="⑤替代路线">有</td><td data-label="⑥定价权">台达过半</td><td data-label="判定">☆ 非卡点</td></tr>
+<tr><td data-label="环节"><strong>液冷冷源/干冷器</strong></td><td data-label="①供应商数量">10-20 家</td><td data-label="②扩产周期">12 月</td><td data-label="③认证周期">12 月</td><td data-label="④断供后果">可切换</td><td data-label="⑤替代路线">有</td><td data-label="⑥定价权">分散</td><td data-label="判定">☆ 非卡点</td></tr>
 </tbody></table>
 <p><strong>读法</strong>:★★★ 三项特征(玩家 ≤3 家 + 扩产 24 月以上 + 无成熟替代)同时满足,是"真卡点";★ 项是"现在紧但 1-2 年内会被产能填平"。</p>
 <hr>
 <h2>3. 候选标的表</h2>
 <blockquote>只列<strong>该业务有明确一手证据</strong>的公司;"占比"一栏无出处的一律写 <code>[未查到]</code>,不用推算值混充。</blockquote>
 <table><thead><tr><th>公司(代码)</th><th>环节位置</th><th>该业务占主营</th><th>一手证据(来源+日期)</th><th>最新报告期</th><th>排除项检查</th></tr></thead><tbody>
-<tr><td>中际旭创(300308)</td><td>光模块集成</td><td>光通信收发模块 413.55 亿,占营收 ≈99%</td><td>2026 半年报(2026-08-21)</td><td>2026H1 营收 417.78 亿(+182.49%),归母 136.51 亿(+241.70%),模块毛利率 46.59%,<strong>经营现金流 18.00 亿(-44.08%)</strong></td><td>主营业占比✅;但现金流与利润背离,列入观察</td></tr>
-<tr><td>新易盛(300502)</td><td>光模块集成</td><td>光互联产品 208.83 亿,占 99.87%</td><td>2026 半年报(2026-08-24)</td><td>2026H1 营收 209.10 亿(+100.34%),毛利率 48.46%,Q2 毛利率环比回落(1.6T 爬坡良率低)</td><td>✅ 但良率爬坡是风险</td></tr>
-<tr><td>天孚通信(300394)</td><td>光器件(无源为主)</td><td>无源 15.30 亿(占约 54%)+ 有源 12.60 亿</td><td>2026 半年报(2026-08-19)+ 互动易(2026-08-21)</td><td>2026H1 营收 28.28 亿(+15.15%);无源 +77.40%/毛利率 71.90%,<strong>有源 -19.57%/47.03%</strong>;存货 +103%(战略备货)</td><td>⚠️ 有源下滑源于物料短缺(公司口径),需 Q3 报验证</td></tr>
-<tr><td>源杰科技(688498)</td><td>光芯片(E ML/CW)</td><td>数据中心业务 7.74 亿,占 83.77%</td><td>2026 半年报(2026-08-31)</td><td>2026H1 营收 9.25 亿(+351.40%),数据中心毛利率 <strong>84.00%</strong>;200G EML 验证推进中</td><td>✅ 链条位置最上游的 A 股标的之一</td></tr>
-<tr><td>长光华芯(688048)</td><td>光芯片</td><td>光通信芯片上半年占比约 42%</td><td>2026 半年报 + 官方媒体访谈(2026-07-24)</td><td>2026H1 营收 3.91 亿(+82.67%);200G EML 计划 2026Q4 量产</td><td>⚠️ 量产时间表是公司口径,未见客户验证</td></tr>
-<tr><td>仕佳光子(688313)</td><td>光芯片及器件</td><td>光芯片及器件 12.43 亿,占 83.15%</td><td>2026 半年报</td><td>2026H1 营收 14.95 亿(+50.66%)</td><td>✅</td></tr>
-<tr><td>东山精密(002384)</td><td>光芯片(索尔思)</td><td><code>[未查到]</code> 单独占比</td><td>互动易(2026-05-19)</td><td>称 200G EML 已量产;索尔思 2025-10 并表</td><td>⚠️ 光芯片收入未单独披露 → 排除项"占比不透明"</td></tr>
-<tr><td>生益科技(600183)</td><td>覆铜板 CCL</td><td>覆铜板及粘结片 177.74 亿,占 62.5%</td><td>2025 年报(2026-04-25)</td><td>2025 营收 284.31 亿(+39.45%),归母 33.34 亿(+91.76%);M9 级通过认证 [观点·媒体]</td><td>✅ 大陆唯一进 M9 的 CCL 厂</td></tr>
-<tr><td>宏和科技(603256)</td><td>特种电子布</td><td>特种电子布 1.78 亿,占 15.2%</td><td>2025 年报</td><td>2025 营收 11.71 亿(+40.31%),特种布 +1326.94%,毛利率 61.31%</td><td>⚠️ 占比仅 15.2%,主业仍普通布</td></tr>
-<tr><td>中材科技(002080)</td><td>特种玻纤布</td><td>销量 1917 万米,<code>[未查到]</code> 收入占比</td><td>2025 年报(2026-03-20)</td><td>2025 营收 &gt;300 亿,归母 18.2 亿(+104%);已建成 5 条低介电/低膨胀产线</td><td>⚠️ 卡点业务被大集团稀释</td></tr>
-<tr><td>铜冠铜箔(301217)</td><td>铜箔</td><td>PCB 铜箔 37.04 亿,占 55.37%(毛利率仅 6.16%)</td><td>2025 年报(2026-04-18)</td><td>HVLP 产量 +232%;公司原文"行业产能巨大…供过于求"</td><td>⚠️ 高端紧、低端过剩,毛利率说明定价权未形成</td></tr>
-<tr><td>德福科技(301511)</td><td>铜箔</td><td>电子电路铜箔 17.81 亿,占 14.32%(毛利率 3.67%)</td><td>2025 年报(2026-04-25)</td><td>HVLP1-3 批量供货(英伟达项目),载体铜箔 C-IC2 在 1.6T 光模块量产</td><td>⚠️ 主业是锂电铜箔(80.61%),卡点业务占比小</td></tr>
-<tr><td>英维克(002837)</td><td>液冷/CDU/Manifold</td><td><code>[未查到]</code>(公司已不再单独披露液冷收入)</td><td>2025 年报(2026-04-21)</td><td>机房温控 34.49 亿(+41.28%);2025Q3 获 1200 台 GB300 液冷机柜订单</td><td>⚠️ 液冷收入口径不透明</td></tr>
-<tr><td>中航光电(002179)</td><td>UQD 快接头</td><td>液冷解决方案及其他占 8.55%(2025H1)</td><td>2024 年报 + 2025H1</td><td>MLCP 冷板处送样/测试阶段;UQD 国内第二梯队</td><td>⚠️ 占比 &lt;10%</td></tr>
-<tr><td>沃尔核材(002130)</td><td>高速铜缆</td><td>高速通信线 10.17 亿,占总营收 12.03%</td><td>2025 年报(2026-04-01)</td><td>高速通信线 +237.99%,224G 大批量交付</td><td>⚠️ 铜连接逻辑本身有被 CPO 侵蚀的风险</td></tr>
-<tr><td>麦格米特(002851)</td><td>服务器电源</td><td>电源产品 26.80 亿,占 28.50%</td><td>2025 年报(2026-04-29)</td><td>系英伟达 GB200 NVL72 指定 40 余家部件商之一;在售 800V/570kW Side Rack</td><td>✅ 唯一进了英伟达官方电源生态名单的 A 股</td></tr>
-<tr><td>蔚蓝锂芯(002245)</td><td>BBU 电芯</td><td><code>[未查到]</code></td><td>机构数据 [观点]</td><td>2026H1 全球 BBU 电芯市占约 7.3%</td><td>⚠️ 电芯端日韩占 77%,国产替代刚起步</td></tr>
-<tr><td>长电科技(600584)</td><td>先进封装</td><td>先进封装相关收入 270 亿,占约 69.5%(推算)</td><td>2025 年报(2026-04-10)</td><td>2025 营收 388.71 亿(+8.09%),归母 15.65 亿(<strong>-2.75%</strong>);年报未披露 2.5D/3D 产能</td><td>⚠️ 高端产能数据不透明</td></tr>
-<tr><td>精智达(688627)</td><td>存储测试设备</td><td><code>[未查到]</code></td><td>公告(2026-01-23 / 2026-09-04)</td><td>两笔大单 13.11 亿 + 15.7635 亿元,指向国产 DRAM/HBM 测试</td><td>✅ 大额合同公告是最硬的证据类型</td></tr>
+<tr><td data-label="公司(代码)">中际旭创(300308)</td><td data-label="环节位置">光模块集成</td><td data-label="该业务占主营">光通信收发模块 413.55 亿,占营收 ≈99%</td><td data-label="一手证据(来源+日期)">2026 半年报(2026-08-21)</td><td data-label="最新报告期">2026H1 营收 417.78 亿(+182.49%),归母 136.51 亿(+241.70%),模块毛利率 46.59%,<strong>经营现金流 18.00 亿(-44.08%)</strong></td><td data-label="排除项检查">主营业占比✅;但现金流与利润背离,列入观察</td></tr>
+<tr><td data-label="公司(代码)">新易盛(300502)</td><td data-label="环节位置">光模块集成</td><td data-label="该业务占主营">光互联产品 208.83 亿,占 99.87%</td><td data-label="一手证据(来源+日期)">2026 半年报(2026-08-24)</td><td data-label="最新报告期">2026H1 营收 209.10 亿(+100.34%),毛利率 48.46%,Q2 毛利率环比回落(1.6T 爬坡良率低)</td><td data-label="排除项检查">✅ 但良率爬坡是风险</td></tr>
+<tr><td data-label="公司(代码)">天孚通信(300394)</td><td data-label="环节位置">光器件(无源为主)</td><td data-label="该业务占主营">无源 15.30 亿(占约 54%)+ 有源 12.60 亿</td><td data-label="一手证据(来源+日期)">2026 半年报(2026-08-19)+ 互动易(2026-08-21)</td><td data-label="最新报告期">2026H1 营收 28.28 亿(+15.15%);无源 +77.40%/毛利率 71.90%,<strong>有源 -19.57%/47.03%</strong>;存货 +103%(战略备货)</td><td data-label="排除项检查">⚠️ 有源下滑源于物料短缺(公司口径),需 Q3 报验证</td></tr>
+<tr><td data-label="公司(代码)">源杰科技(688498)</td><td data-label="环节位置">光芯片(E ML/CW)</td><td data-label="该业务占主营">数据中心业务 7.74 亿,占 83.77%</td><td data-label="一手证据(来源+日期)">2026 半年报(2026-08-31)</td><td data-label="最新报告期">2026H1 营收 9.25 亿(+351.40%),数据中心毛利率 <strong>84.00%</strong>;200G EML 验证推进中</td><td data-label="排除项检查">✅ 链条位置最上游的 A 股标的之一</td></tr>
+<tr><td data-label="公司(代码)">长光华芯(688048)</td><td data-label="环节位置">光芯片</td><td data-label="该业务占主营">光通信芯片上半年占比约 42%</td><td data-label="一手证据(来源+日期)">2026 半年报 + 官方媒体访谈(2026-07-24)</td><td data-label="最新报告期">2026H1 营收 3.91 亿(+82.67%);200G EML 计划 2026Q4 量产</td><td data-label="排除项检查">⚠️ 量产时间表是公司口径,未见客户验证</td></tr>
+<tr><td data-label="公司(代码)">仕佳光子(688313)</td><td data-label="环节位置">光芯片及器件</td><td data-label="该业务占主营">光芯片及器件 12.43 亿,占 83.15%</td><td data-label="一手证据(来源+日期)">2026 半年报</td><td data-label="最新报告期">2026H1 营收 14.95 亿(+50.66%)</td><td data-label="排除项检查">✅</td></tr>
+<tr><td data-label="公司(代码)">东山精密(002384)</td><td data-label="环节位置">光芯片(索尔思)</td><td data-label="该业务占主营"><code>[未查到]</code> 单独占比</td><td data-label="一手证据(来源+日期)">互动易(2026-05-19)</td><td data-label="最新报告期">称 200G EML 已量产;索尔思 2025-10 并表</td><td data-label="排除项检查">⚠️ 光芯片收入未单独披露 → 排除项"占比不透明"</td></tr>
+<tr><td data-label="公司(代码)">生益科技(600183)</td><td data-label="环节位置">覆铜板 CCL</td><td data-label="该业务占主营">覆铜板及粘结片 177.74 亿,占 62.5%</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-25)</td><td data-label="最新报告期">2025 营收 284.31 亿(+39.45%),归母 33.34 亿(+91.76%);M9 级通过认证 [观点·媒体]</td><td data-label="排除项检查">✅ 大陆唯一进 M9 的 CCL 厂</td></tr>
+<tr><td data-label="公司(代码)">宏和科技(603256)</td><td data-label="环节位置">特种电子布</td><td data-label="该业务占主营">特种电子布 1.78 亿,占 15.2%</td><td data-label="一手证据(来源+日期)">2025 年报</td><td data-label="最新报告期">2025 营收 11.71 亿(+40.31%),特种布 +1326.94%,毛利率 61.31%</td><td data-label="排除项检查">⚠️ 占比仅 15.2%,主业仍普通布</td></tr>
+<tr><td data-label="公司(代码)">中材科技(002080)</td><td data-label="环节位置">特种玻纤布</td><td data-label="该业务占主营">销量 1917 万米,<code>[未查到]</code> 收入占比</td><td data-label="一手证据(来源+日期)">2025 年报(2026-03-20)</td><td data-label="最新报告期">2025 营收 &gt;300 亿,归母 18.2 亿(+104%);已建成 5 条低介电/低膨胀产线</td><td data-label="排除项检查">⚠️ 卡点业务被大集团稀释</td></tr>
+<tr><td data-label="公司(代码)">铜冠铜箔(301217)</td><td data-label="环节位置">铜箔</td><td data-label="该业务占主营">PCB 铜箔 37.04 亿,占 55.37%(毛利率仅 6.16%)</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-18)</td><td data-label="最新报告期">HVLP 产量 +232%;公司原文"行业产能巨大…供过于求"</td><td data-label="排除项检查">⚠️ 高端紧、低端过剩,毛利率说明定价权未形成</td></tr>
+<tr><td data-label="公司(代码)">德福科技(301511)</td><td data-label="环节位置">铜箔</td><td data-label="该业务占主营">电子电路铜箔 17.81 亿,占 14.32%(毛利率 3.67%)</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-25)</td><td data-label="最新报告期">HVLP1-3 批量供货(英伟达项目),载体铜箔 C-IC2 在 1.6T 光模块量产</td><td data-label="排除项检查">⚠️ 主业是锂电铜箔(80.61%),卡点业务占比小</td></tr>
+<tr><td data-label="公司(代码)">英维克(002837)</td><td data-label="环节位置">液冷/CDU/Manifold</td><td data-label="该业务占主营"><code>[未查到]</code>(公司已不再单独披露液冷收入)</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-21)</td><td data-label="最新报告期">机房温控 34.49 亿(+41.28%);2025Q3 获 1200 台 GB300 液冷机柜订单</td><td data-label="排除项检查">⚠️ 液冷收入口径不透明</td></tr>
+<tr><td data-label="公司(代码)">中航光电(002179)</td><td data-label="环节位置">UQD 快接头</td><td data-label="该业务占主营">液冷解决方案及其他占 8.55%(2025H1)</td><td data-label="一手证据(来源+日期)">2024 年报 + 2025H1</td><td data-label="最新报告期">MLCP 冷板处送样/测试阶段;UQD 国内第二梯队</td><td data-label="排除项检查">⚠️ 占比 &lt;10%</td></tr>
+<tr><td data-label="公司(代码)">沃尔核材(002130)</td><td data-label="环节位置">高速铜缆</td><td data-label="该业务占主营">高速通信线 10.17 亿,占总营收 12.03%</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-01)</td><td data-label="最新报告期">高速通信线 +237.99%,224G 大批量交付</td><td data-label="排除项检查">⚠️ 铜连接逻辑本身有被 CPO 侵蚀的风险</td></tr>
+<tr><td data-label="公司(代码)">麦格米特(002851)</td><td data-label="环节位置">服务器电源</td><td data-label="该业务占主营">电源产品 26.80 亿,占 28.50%</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-29)</td><td data-label="最新报告期">系英伟达 GB200 NVL72 指定 40 余家部件商之一;在售 800V/570kW Side Rack</td><td data-label="排除项检查">✅ 唯一进了英伟达官方电源生态名单的 A 股</td></tr>
+<tr><td data-label="公司(代码)">蔚蓝锂芯(002245)</td><td data-label="环节位置">BBU 电芯</td><td data-label="该业务占主营"><code>[未查到]</code></td><td data-label="一手证据(来源+日期)">机构数据 [观点]</td><td data-label="最新报告期">2026H1 全球 BBU 电芯市占约 7.3%</td><td data-label="排除项检查">⚠️ 电芯端日韩占 77%,国产替代刚起步</td></tr>
+<tr><td data-label="公司(代码)">长电科技(600584)</td><td data-label="环节位置">先进封装</td><td data-label="该业务占主营">先进封装相关收入 270 亿,占约 69.5%(推算)</td><td data-label="一手证据(来源+日期)">2025 年报(2026-04-10)</td><td data-label="最新报告期">2025 营收 388.71 亿(+8.09%),归母 15.65 亿(<strong>-2.75%</strong>);年报未披露 2.5D/3D 产能</td><td data-label="排除项检查">⚠️ 高端产能数据不透明</td></tr>
+<tr><td data-label="公司(代码)">精智达(688627)</td><td data-label="环节位置">存储测试设备</td><td data-label="该业务占主营"><code>[未查到]</code></td><td data-label="一手证据(来源+日期)">公告(2026-01-23 / 2026-09-04)</td><td data-label="最新报告期">两笔大单 13.11 亿 + 15.7635 亿元,指向国产 DRAM/HBM 测试</td><td data-label="排除项检查">✅ 大额合同公告是最硬的证据类型</td></tr>
 </tbody></table>
 <p><strong>未列入的理由</strong>(说明为什么"看起来是机会但被排除"):</p>
 <ul><li>光迅科技、华工科技:本轮未取到 2026 半年报原文,不列。</li><li>台系/日系环节(冷板 AVC、快接头 Staubli、T-glass 日东纺):<strong>不在 A 股</strong>,但它们才是这些环节的真卡点持有者——这是本报告最重要的排除结论。</li></ul>
