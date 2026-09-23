@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A股 AI 基础设施链 · 卡点面板</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--red:#c8362f;--orange:#e07b1f;--yellow:#d4a017;--grey:#93a1af;--ink:#16212b;--line:#dbe2ea;--mute:#6b7a89}
+  body{font-family:"Microsoft YaHei","Segoe UI",-apple-system,sans-serif;background:#eef1f5;color:var(--ink);line-height:1.7;padding:18px 12px 40px}
+  .doc{max-width:1000px;margin:0 auto}
+  .hd{background:#16212b;color:#fff;border-radius:10px;padding:20px 22px}
+  .hd h1{font-size:24px;letter-spacing:-.5px}
+  .hd h1 b{color:#ffd166}
+  .hd .meta{font-size:12.5px;color:#a9b7c4;margin-top:8px;line-height:1.7}
+  .stamp{display:inline-block;background:#ffd166;color:#3a2a00;font-weight:700;border-radius:4px;padding:2px 8px;font-size:12px;margin-top:10px}
+  .warn{background:#fff4e0;border:1px solid #ffd9a0;color:#8a4b00;border-radius:8px;padding:11px 14px;font-size:12.8px;margin-top:12px;line-height:1.75}
+  section{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-top:14px}
+  h2{font-size:18px;border-left:5px solid var(--red);padding-left:10px;margin-bottom:12px}
+  h2 small{font-weight:400;font-size:12.5px;color:var(--mute);margin-left:8px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+  .kpi{background:#f7f9fc;border:1px solid #e6ecf3;border-radius:8px;padding:11px 13px}
+  .kpi .n{font-size:19px;font-weight:700;color:var(--red);letter-spacing:-.3px}
+  .kpi .t{font-size:12.5px;color:#41505f;margin-top:3px;line-height:1.6}
+  .chain{display:flex;flex-direction:column;gap:7px}
+  .lv{display:grid;grid-template-columns:96px 1fr 108px;gap:10px;align-items:center;background:#f7f9fc;border:1px solid #e6ecf3;border-left-width:5px;border-radius:7px;padding:10px 12px;cursor:pointer;transition:.15s}
+  .lv:hover{background:#eef4fb}
+  .lv.l3{border-left-color:var(--red)} .lv.l2{border-left-color:var(--orange)}
+  .lv.l1{border-left-color:var(--yellow)} .lv.l0{border-left-color:#c3ccd6}
+  .lv .name{font-weight:700;font-size:13.5px}
+  .lv .desc{font-size:12.8px;color:#41505f}
+  .lv .tag{font-size:11.5px;font-weight:700;text-align:right}
+  .lv .detail{grid-column:1/-1;display:none;font-size:12.5px;color:#3c4a58;border-top:1px dashed #d3dce6;padding-top:8px;margin-top:2px}
+  .lv.open .detail{display:block}
+  .ctrls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:11px;align-items:center}
+  .ctrls button{font-family:inherit;font-size:12.5px;border:1px solid var(--line);background:#f7f9fc;color:#41505f;border-radius:20px;padding:5px 13px;cursor:pointer}
+  .ctrls button.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+  .ctrls .hint{font-size:12px;color:var(--mute);margin-left:auto}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f2f5f9;text-align:left;padding:8px 9px;font-size:12.5px;color:#41505f;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}
+  th:hover{background:#e9eff6}
+  th .ar{color:var(--grey);font-size:10px}
+  td{padding:8px 9px;border-top:1px solid #eef2f7;vertical-align:top}
+  tbody tr:nth-child(even){background:#fbfcfe}
+  .bar{height:10px;border-radius:5px;display:inline-block;vertical-align:middle}
+  .b3{background:var(--red)} .b2{background:var(--orange)} .b1{background:var(--yellow)}
+  .nm{font-weight:700}
+  .who{color:var(--mute);font-size:12.3px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px}
+  .card{background:#f7f9fc;border:1px solid #e6ecf3;border-radius:8px;padding:12px 14px}
+  .card h4{font-size:13.8px;margin-bottom:6px}
+  .card p{font-size:12.5px;color:#3c4a58;line-height:1.72}
+  .up{color:#1e7a3c;font-weight:700} .dn{color:var(--red);font-weight:700}
+  details{border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-top:9px;background:#fbfcfe}
+  details[open]{background:#fff}
+  summary{cursor:pointer;font-size:13.5px;font-weight:700;color:#2b3a48}
+  details .body{font-size:12.8px;color:#3c4a58;margin-top:9px;line-height:1.78}
+  details ol,details ul{margin-left:20px}
+  details li{margin:5px 0}
+  .foot{font-size:11.5px;color:#7c8a98;margin-top:16px;line-height:1.7;text-align:center}
+  @media(max-width:640px){
+    .lv{grid-template-columns:78px 1fr;row-gap:4px}
+    .lv .tag{grid-column:1/-1;text-align:left}
+    th,td{font-size:12px;padding:7px 6px}
+    .hd h1{font-size:20px}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="hd">
+    <h1>A股 AI 基础设施链 · <b>卡点面板</b></h1>
+    <div class="meta">拆链 → 六筛 → 证据阶梯 → 反证条件 ｜ 方法:industry-chokepoint skill</div>
+    <div class="stamp">数据截止 2026-09-23 ｜ 财务口径为 2026 年半年报</div>
+  </div>
+
+  <div class="warn">
+    <b>这是静态快照,不会自动更新。</b>页面里的数字是 2026-09-23 那一次检索的结果,之后行情、财报、公司公告都会变。
+    要更新必须重跑一次研究流程(或只重跑其中的观察点)。<b>研究辅助,不构成投资建议。</b>
+  </div>
+
+  <section>
+    <h2>结论速览<small>四句话</small></h2>
+    <div class="kpis">
+      <div class="kpi"><div class="n">链条倒置</div><div class="t">中游光模块中国已全球第一,上游每一层被美日垄断</div></div>
+      <div class="kpi"><div class="n">84% vs 47%</div><div class="t">光芯片数据中心业务毛利率 84%,光模块 46.6~48.5% —— 毛利率沿链条向上递增</div></div>
+      <div class="kpi"><div class="n">材料层最硬</div><div class="t">T-glass 玻纤布 / ABF 树脂膜 / 载体铜箔:玩家 1 家,扩产 24–36 个月</div></div>
+      <div class="kpi"><div class="n">13 项留空</div><div class="t">查不到的数字写 [未查到],不用估算值填充</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>链条地图<small>点任意一层展开</small></h2>
+    <div class="chain" id="chain"></div>
+  </section>
+
+  <section>
+    <h2>卡点强度排行<small>点表头排序 · 用按钮筛选</small></h2>
+    <div class="ctrls">
+      <button data-f="all" class="on">全部</button>
+      <button data-f="3">只看 ★★★ 真卡点</button>
+      <button data-f="2">★★☆ 及以上</button>
+      <button data-f="cn">有 A 股标的</button>
+      <span class="hint">条形越长 = 越难替代</span>
+    </div>
+    <table>
+      <thead><tr>
+        <th data-k="rank"># <span class="ar">▲▼</span></th>
+        <th data-k="name">环节 <span class="ar">▲▼</span></th>
+        <th data-k="score">强度 <span class="ar">▲▼</span></th>
+        <th data-k="owner">谁掌握 <span class="ar">▲▼</span></th>
+        <th>关键数字(带来源年份)</th>
+        <th>A 股相关</th>
+      </tr></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>三个反常识信号<small>可核实的,不是情绪叙事</small></h2>
+    <div class="cards">
+      <div class="card">
+        <h4>① 日东纺:市场惩罚"维持卡点"</h4>
+        <p>2026-05-13 股价盘中 <span class="dn">跌超 12%</span>。导火索:净利指引同比 <span class="dn">-59%</span>(低于预期)+ 宣布不增产 T-glass。<br>
+        但同期电子材料事业营业利润 <span class="up">+39.6%</span>。<br>
+        <b>短期财务变难看,恰恰是卡点地位的证据</b> —— 该看的是谈判桌位置,不是当期 EPS。</p>
+      </div>
+      <div class="card">
+        <h4>② 中际旭创:利润与现金流背离</h4>
+        <p>2026H1 归母净利 <span class="up">+241.70%</span>(136.51 亿),经营现金流 <span class="dn">-44.08%</span>(18.00 亿);总负债 +82%,研发费用 +96.9%。<br>
+        公司称在"提前锁定供应链产能"。<br>
+        <b>利润 +241% / 现金流 -44% 的剪刀差,需下个报告期验证。</b></p>
+      </div>
+      <div class="card">
+        <h4>③ 天孚通信:卡点的直接证据</h4>
+        <p>有源光器件收入 <span class="dn">-19.57%</span>,财报里明确归因"<b>个别物料阶段性供给短缺</b>",而非需求不足;存货 <span class="up">+103%</span>(战略备货)。<br>
+        <b>需求爆发的环节却无法提产 —— 这就是卡点。</b>观察点:Q3 报的有源收入是否恢复。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>反证条件与未查到<small>什么事实会推翻上面的结论</small></h2>
+
+    <details open>
+      <summary>熔断表:出现这些事,结论就该降级(4 条)</summary>
+      <div class="body"><ol>
+        <li><b>玻纤布:</b>日东纺 2026Q4 福岛新厂按期量产(产能约 3 倍)且继续不涨价 → 降级为"有壁垒但无定价权"。</li>
+        <li><b>光芯片:</b>国产 6 英寸 InP 产线集中释放、国产 EML 份额升至 15–20%,模块厂从"3 年长协锁量"转为现货采购、交期缩至 3 个月 → 卡点解除。</li>
+        <li><b>液冷/电源:</b>800VDC 大规模出货推迟至 2028 年后、单机柜功率长期停在 30kW 以下 → 升级只是温和演进。</li>
+        <li><b>PCB:</b>沪电 33 亿 + 胜宏 180 亿固投集中释放,18 层以上 PCB 增速从 &gt;80% 回落至 20% 以下 → 定价权叙事被打回原形。</li>
+      </ol></div>
+    </details>
+
+    <details>
+      <summary>未查到 / 待核实清单(14 项)</summary>
+      <div class="body"><ul>
+        <li>800G/1.6T 光模块<b>分厂商精确市占率</b> —— LightCounting 只公布 TOP10 销售额排序;网传"旭创 800G 占 40–50%"本轮无一手出处,<b>未采信</b>。</li>
+        <li>CPO 2026 年市场规模与出货量的官方数字(TrendForce/Yole 原文付费)。</li>
+        <li>磷化铟衬底的中国国产化率精确数字、国内衬底厂产能。</li>
+        <li>ABF 树脂膜的扩产周期与认证周期(六筛表中该项留空)。</li>
+        <li>英维克 / 高澜 / 同飞 / 申菱的液冷单独收入(英维克已明确不再单独披露)。</li>
+        <li>服务器电源(柜内 PSU)中国大陆厂商精确全球份额。</li>
+        <li>UQD 快接头国产化率量化数字与国产厂商产能。</li>
+        <li>800V HVDC 国内已落地订单金额(中恒电气、麦格米特均未披露)。</li>
+        <li>长电 / 通富 / 盛合晶微 2.5D/3D 的具体月产能、利用率、良率。</li>
+        <li>长鑫存储 HBM3E 官方产能与良率(仅外媒/韩媒口径)。</li>
+        <li>光迅科技、华工科技 2026 年半年报原文财务数据。</li>
+        <li>"丰田织布机是玻纤布织机全球唯一供应商"——仅见自媒体摘要,未采信。</li>
+        <li>字节跳动 2026 年 capex 具体金额(仅有方向性表述)。</li>
+        <li>微软 FY27 全年 capex 绝对金额(公司未给,市面数字均为卖方外推)。</li>
+      </ul></div>
+    </details>
+
+    <details>
+      <summary>证据分级规则(为什么有些数字我不给)</summary>
+      <div class="body">
+        <ul>
+          <li><b>E0 事实</b> —— 公司公告 / 年报 / 交易所文件 / 官方规则。<b>唯一能单独下结论的一档。</b></li>
+          <li><b>E1–E2</b> —— 行业协会、官方统计、权威媒体。需注明机构与口径。</li>
+          <li><b>E3</b> —— 券商研报,只作观点,记"谁、什么时候、什么假设"。</li>
+          <li><b>E4</b> —— 社媒、自媒体,<b>只作线索</b>,必须回到 E0 验证。</li>
+          <li><b>定性可用推断,数字必须一手源</b>:链上位置可以说"推断",份额/TAM 这类数字没一手源就留空。</li>
+          <li><b>商业阶段六段</b>:研发 → 送样 → 客户认证 → 量产 → 有订单 → 已确认收入。<b>送样 ≠ 订单 ≠ 收入。</b></li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <div class="foot">
+    自包含单文件 · 离线可用 · 无外部依赖 ｜ 生成 2026-09-23 ｜ 研究辅助,不构成投资建议<br>
+    数据来源:各公司 2026 年半年报、SEC/港交所文件、TrendForce/集微咨询/IDC 等机构公开摘要
+  </div>
+</div>
+
+<script>
+const CHAIN = [
+  {lv:"l0",name:"终端需求",desc:"云厂商 / AI 算力集群 —— 全球 5–8 家",tag:"☆☆☆ 非卡点",stars:0,
+   detail:"全球 9 大 CSP 2026 资本开支合计 >8,867 亿美元,同比约 +90%(TrendForce)。注意口径:含土建/电力等非 AI 部分,不可当 AI 专项规模。微软 2026 日历年在 ≈1,750 亿美元、Alphabet 1,950–2,050 亿、亚马逊 ≈2,200 亿(CEO 口述)、Meta 1,300–1,450 亿(含融资租赁本金偿付)。四家口径互不相同,不能直接加总。"},
+  {lv:"l0",name:"系统集成",desc:"AI 服务器 / 整机 / 机柜 —— 玩家 20+ 家",tag:"☆☆☆ 非卡点",stars:0,
+   detail:"扩产周期 6–12 个月,认证周期 6–12 个月,玩家众多、可替换。这一层中国份额高但利润薄 —— 它离上游太远,议价权不在自己手上。"},
+  {lv:"l1",name:"关键器件",desc:"光模块 / PCB / 电源 / 液冷",tag:"★☆☆ 结构性偏紧",stars:1,
+   detail:"扩产 12–18 个月 → 偏紧但产能正在建。中国在光模块已是全球第一:中际旭创 2025 年销售额 53.33 亿美元(LightCounting),800G/1.6T 中国厂商合计份额超 70%。这一层的「紧张」更可能是产能节奏,不是技术壁垒。"},
+  {lv:"l2",name:"上游器件芯片",desc:"EML 激光器 / 硅光 / UQD 快接头 / 高阶 CCL",tag:"★★☆ 卡点候选",stars:2,
+   detail:"玩家 3–8 家,扩产 18–24 个月,认证 6–18 个月。高端 EML 由 Lumentum、Coherent、住友电工三家占 65–70%;25G 以上光芯片国产化率约 4%,200G EML 不足 5%;交期拉长至 12–18 个月,模块厂用 2–3 年长协锁产能。硅光是可能的绕过路径 —— 中际旭创 1.6T 硅光模块已规模放量。"},
+  {lv:"l3",name:"上游材料",desc:"T-glass 玻纤布 / ABF 膜 / 载体铜箔 / 磷化铟 / HVLP 铜箔",tag:"★★★ 真卡点",stars:3,
+   detail:"玩家 1–3 家,扩产 24–36 个月,认证 12–24 个月,无成熟替代。日东纺 T-glass 市占 >90%(英伟达曾指定其独家)、味之素 ABF 树脂膜 >95%、三井金属载体铜箔 ~90%、InP 衬底三家 >90%。这是整条链上最容易被忽略、也最难被替代的一层。"},
+  {lv:"l1",name:"基础设施",desc:"供电(800V HVDC)/ 制冷(冷源、干冷器)",tag:"★☆☆ 偏紧",stars:1,
+   detail:"玩家 10–20 家,格局分散。800V HVDC 仍处产业化初期:英伟达 2025-05 发布架构,自 2027 年起过渡;SemiAnalysis 认为出货将推迟至 2028 年后,摩根士丹利驳斥称电源机柜 2026Q3 就绪 —— 两家机构结论对立,说明共识尚未形成。"}
+];
+
+const ROWS = [
+  {rank:1,name:"T-glass 低膨胀玻纤布",score:3,owner:"日东纺(日本)",num:"市占 >90%;低介电布 >80%;NER 布约 100%",cn:"中材科技 / 宏和科技(占比均小)",scn:1},
+  {rank:2,name:"ABF 树脂膜",score:3,owner:"味之素(日本)",num:"占 >95%,载板必备材料",cn:"无 A 股直接标的",scn:0},
+  {rank:3,name:"载体铜箔(可剥铜)",score:3,owner:"三井金属(日本)",num:"近 90% 垄断",cn:"德福科技(载体铜箔已在 1.6T 光模块量产)",scn:1},
+  {rank:4,name:"磷化铟(InP)衬底",score:3,owner:"住友 42% / AXT 36% / JX 13%",num:"三家合计 >90%;国产化率 [未查到]",cn:"[未查到]",scn:0},
+  {rank:5,name:"先进封装(CoWoS 类)",score:3,owner:"台积电(占 2.5D/3D >90%)",num:"缺口约 20%;大陆高端国产化 <10%",cn:"长电科技 / 通富微电 / 盛合晶微",scn:1},
+  {rank:6,name:"HBM",score:3,owner:"SK 海力士 / 三星 / 美光",num:"三强垄断;2026 为价格盘整年",cn:"长鑫存储(未上市,仅风险试产)",scn:0},
+  {rank:7,name:"高端 EML 光芯片",score:2,owner:"Lumentum / Coherent / 住友",num:"占 65–70%;国产化率约 4%;交期 12–18 个月",cn:"源杰科技 / 长光华芯 / 仕佳光子",scn:2},
+  {rank:8,name:"SoC 测试机",score:2,owner:"爱德万 + 泰瑞达",num:"合计约 90%(爱德万单独 65%)",cn:"长川科技 / 华峰测控 / 精智达",scn:2},
+  {rank:9,name:"HVLP 高端铜箔",score:2,owner:"日韩厂商",num:"占 85–90%;国内高端国产化 <20%",cn:"铜冠铜箔 / 德福科技",scn:2},
+  {rank:10,name:"UQD 液冷快接头",score:2,owner:"Staubli ~30% 等 CR5",num:"CR5 >70%;国产瓶颈在良率",cn:"中航光电 / 永贵电器",scn:2},
+  {rank:11,name:"BBU 电芯",score:2,owner:"松下 + 三星 SDI",num:"合计约 77%(日韩合计 80%+)",cn:"蔚蓝锂芯(约 7.3%)/ 亿纬锂能(送样)",scn:2},
+  {rank:12,name:"CDU 冷量分配单元",score:1,owner:"10–20 家,较分散",num:"订单排到年底 —— 属产能节奏,非技术壁垒",cn:"英维克 / 申菱环境 / 高澜股份",scn:1},
+  {rank:13,name:"高阶 PCB / CCL",score:1,owner:"CR10 ≈37.8%,分散",num:"沪电拟投 33 亿 + 胜宏 2026 计划 ≤200 亿 —— 正在扩产",cn:"沪电股份 / 胜宏科技 / 生益科技",scn:2}
+];
+
+document.getElementById("chain").innerHTML = CHAIN.map(c=>
+  `<div class="lv ${c.lv}" onclick="this.classList.toggle('open')">
+     <div class="name">${c.name}</div>
+     <div class="desc">${c.desc}</div>
+     <div class="tag">${c.tag}</div>
+     <div class="detail">${c.detail}</div>
+   </div>`).join("");
+
+let sortK="rank", asc=true, filter="all";
+const TAGS={3:"★★★ 真卡点",2:"★★☆ 卡点候选",1:"★☆☆ 偏紧"};
+const CLS={3:"b3",2:"b2",1:"b1"};
+
+function render(){
+  let rows=ROWS.filter(r=>{
+    if(filter==="all")return true;
+    if(filter==="cn")return r.scn>0;
+    return r.score>=+filter;
+  });
+  rows.sort((a,b)=>{
+    const x=a[sortK],y=b[sortK];
+    const c=(typeof x==="number")?x-y:String(x).localeCompare(String(y),"zh");
+    return asc?c:-c;
+  });
+  document.getElementById("tb").innerHTML=rows.map(r=>
+    `<tr>
+      <td class="who">${r.rank}</td>
+      <td class="nm">${r.name}</td>
+      <td><span class="bar ${CLS[r.score]}" style="width:${r.score*32}px"></span> <span class="who">${TAGS[r.score]}</span></td>
+      <td class="who">${r.owner}</td>
+      <td>${r.num}</td>
+      <td class="who">${r.cn}</td>
+    </tr>`).join("");
+}
+document.querySelectorAll("th[data-k]").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.k;
+  if(sortK===k){asc=!asc}else{sortK=k;asc=true}
+  render();
+});
+document.querySelectorAll(".ctrls button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll(".ctrls button").forEach(x=>x.classList.remove("on"));
+  b.classList.add("on"); filter=b.dataset.f; render();
+});
+render();
+</script>
+</body>
+</html>
