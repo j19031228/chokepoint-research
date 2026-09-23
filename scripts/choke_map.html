@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Microsoft YaHei","Segoe UI",sans-serif; background:#eef1f5; color:#16212b; width:1000px; }
+  .wrap { padding:26px 30px 20px; }
+  h1 { font-size:30px; letter-spacing:-.6px; }
+  h1 span { color:#c8362f; }
+  .sub { font-size:13px; color:#5d6b7a; margin-top:7px; }
+  .disc { display:inline-block; background:#fff3e0; color:#a35b00; border:1px solid #ffd9a0; border-radius:4px; padding:2px 8px; font-size:12px; margin-top:8px; }
+
+  .sec { margin-top:22px; }
+  .sec-t { font-size:17px; font-weight:700; border-left:5px solid #c8362f; padding-left:10px; margin-bottom:11px; }
+  .sec-t i { font-style:normal; font-weight:400; font-size:13px; color:#6b7a89; margin-left:8px; }
+
+  .demand { background:#16212b; color:#fff; border-radius:8px; padding:14px 18px; display:flex; align-items:center; gap:24px; }
+  .demand .big { font-size:29px; font-weight:700; color:#ffd166; letter-spacing:-.5px; }
+  .demand .lbl { font-size:13px; color:#b7c4d1; line-height:1.5; }
+  .demand .sep { width:1px; height:44px; background:#33414f; }
+  .demand b { color:#8fe3a8; }
+
+  .chain { background:#fff; border-radius:8px; overflow:hidden; border:1px solid #dbe2ea; }
+  .row { display:grid; grid-template-columns:118px 1fr 208px 128px; align-items:stretch; border-top:1px solid #eaeff5; }
+  .row:first-child { border-top:none; }
+  .row > div { padding:11px 12px; }
+  .lay { font-weight:700; font-size:14px; background:#f7f9fc; display:flex; align-items:center; }
+  .mid { font-size:13.5px; line-height:1.55; }
+  .mid b { font-size:14px; }
+  .mid em { font-style:normal; color:#6b7a89; }
+  .cn { font-size:12.5px; color:#41505f; display:flex; flex-direction:column; justify-content:center; gap:3px; }
+  .cn .tag { display:inline-block; border-radius:3px; padding:1px 6px; font-size:11.5px; font-weight:700; }
+  .t-good { background:#e3f5e8; color:#1e7a3c; }
+  .t-bad  { background:#fde8e6; color:#c8362f; }
+  .t-mid  { background:#fff4e0; color:#a35b00; }
+  .lvl { display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:4px; }
+  .bar { height:9px; border-radius:5px; }
+  .stars { font-size:13px; letter-spacing:1px; }
+  .l3 { background:#c8362f; } .l2 { background:#e07b1f; } .l1 { background:#d4a017; } .l0 { background:#b6c1cc; }
+  .s3 { color:#c8362f; } .s2 { color:#e07b1f; } .s1 { color:#d4a017; } .s0 { color:#93a1af; }
+
+  table { width:100%; border-collapse:collapse; background:#fff; border:1px solid #dbe2ea; border-radius:8px; overflow:hidden; font-size:13px; }
+  th { background:#f2f5f9; font-size:12.5px; color:#41505f; text-align:left; padding:8px 10px; font-weight:700; }
+  td { padding:7px 10px; border-top:1px solid #eef2f7; vertical-align:middle; }
+  .minibar { height:11px; border-radius:6px; }
+  .who { color:#6b7a89; font-size:12.5px; }
+  .rank { font-weight:700; color:#c8362f; }
+
+  .sig { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .card { background:#fff; border:1px solid #dbe2ea; border-radius:8px; padding:13px 14px; }
+  .card h4 { font-size:14px; margin-bottom:7px; }
+  .card p { font-size:12.5px; line-height:1.62; color:#3c4a58; }
+  .card .hl { color:#c8362f; font-weight:700; }
+  .card .up { color:#1e7a3c; font-weight:700; }
+  .card .dn { color:#c8362f; font-weight:700; }
+  .src { font-size:11px; color:#8896a4; margin-top:6px; }
+
+  .rev { background:#fff; border:1px solid #dbe2ea; border-radius:8px; padding:13px 16px; }
+  .rev li { font-size:12.8px; line-height:1.72; color:#33424f; margin-left:16px; }
+  .rev li b { color:#c8362f; }
+  .foot { margin-top:18px; font-size:11.5px; color:#7c8a98; line-height:1.6; border-top:1px solid #d8e0e8; padding-top:10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>A股 AI 基础设施链 · <span>卡点地图</span></h1>
+  <div class="sub">2026-09-23 ｜ 财务数据截止 2026 年半年报 ｜ 方法:拆链 → 六筛 → 证据阶梯 → 反证条件</div>
+  <div class="disc">研究辅助,非投资建议 ｜ 灰=未查到,不硬编</div>
+
+  <div class="sec">
+    <div class="demand">
+      <div>
+        <div class="big">＞8,867 亿美元</div>
+        <div class="lbl">全球 9 大 CSP 2026 年资本开支合计,同比约 <b>+90%</b>(TrendForce)<br>含土建/电力等非 AI 部分,不可当 AI 专项口径</div>
+      </div>
+      <div class="sep"></div>
+      <div class="lbl">微软 2026 日历年在 <b>≈1,750 亿</b> 美元 ｜ Alphabet <b>1,950–2,050 亿</b><br>亚马逊 <b>≈2,200 亿</b>(CEO 口述) ｜ Meta <b>1,300–1,450 亿</b>(含融资租赁)<br>中国三大运营商资本开支总额下降、<b>算力部分逆势增长</b>(移动 +62.4%)</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">链条是倒置的<i>越往下游,中国份额越高;越往上游,越被卡</i></div>
+    <div class="chain">
+      <div class="row">
+        <div class="lay">终端需求</div>
+        <div class="mid"><b>云厂商 / AI 算力集群</b><br><em>全球 5–8 家决定一切,玩家极少但他们是出钱的一方</em></div>
+        <div class="cn"><span class="tag t-mid">需求方</span><span>资本开支 +90%</span></div>
+        <div class="lvl"><div class="bar l0" style="width:20px"></div><div class="stars s0">☆☆☆ 非卡点</div></div>
+      </div>
+      <div class="row">
+        <div class="lay">系统集成</div>
+        <div class="mid"><b>AI 服务器 / 整机 / 机柜</b><br><em>玩家 20+ 家,扩产 6–12 个月,认证 6–12 个月</em></div>
+        <div class="cn"><span class="tag t-good">份额高</span><span>利润薄,靠代工</span></div>
+        <div class="lvl"><div class="bar l0" style="width:26px"></div><div class="stars s0">☆☆☆ 非卡点</div></div>
+      </div>
+      <div class="row">
+        <div class="lay">关键器件</div>
+        <div class="mid"><b>光模块 ｜ PCB ｜ 电源 ｜ 液冷</b><br><em>扩产 12–18 个月 → 结构性偏紧,但产能正在建</em></div>
+        <div class="cn"><span class="tag t-good">光模块全球第 1</span><span>中际旭创 53.33 亿美元居首</span></div>
+        <div class="lvl"><div class="bar l1" style="width:58px"></div><div class="stars s1">★☆☆ 偏紧</div></div>
+      </div>
+      <div class="row">
+        <div class="lay">上游器件<br>芯片</div>
+        <div class="mid"><b>EML 激光器 ｜ 硅光 ｜ UQD 快接头 ｜ 高阶 CCL</b><br><em>玩家 3–8 家,扩产 18–24 个月,认证 6–18 个月</em></div>
+        <div class="cn"><span class="tag t-bad">EML 国产 &lt;5%</span><span>美日 3 家占 65–70%</span></div>
+        <div class="lvl"><div class="bar l2" style="width:86px"></div><div class="stars s2">★★☆ 卡点候选</div></div>
+      </div>
+      <div class="row">
+        <div class="lay">上游材料</div>
+        <div class="mid"><b>T-glass 玻纤布 ｜ ABF 树脂膜 ｜ 载体铜箔 ｜ 磷化铟衬底 ｜ HVLP 铜箔</b><br><em>玩家 <b>1–3 家</b>,扩产 24–36 个月,认证 12–24 个月</em></div>
+        <div class="cn"><span class="tag t-bad">最硬卡点</span><span>进口依赖,无成熟替代</span></div>
+        <div class="lvl"><div class="bar l3" style="width:118px"></div><div class="stars s3">★★★ 真卡点</div></div>
+      </div>
+      <div class="row">
+        <div class="lay">基础设施</div>
+        <div class="mid"><b>供电(800V HVDC) ｜ 制冷(冷源/干冷器)</b><br><em>玩家 10–20 家,格局分散,可切换</em></div>
+        <div class="cn"><span class="tag t-mid">产业化初期</span><span>标准仍在形成</span></div>
+        <div class="lvl"><div class="bar l1" style="width:40px"></div><div class="stars s1">★☆☆ 偏紧</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">卡点强度排行<i>条形越长 = 越难被替代;判据是"玩家数量 × 扩产周期 × 有无替代"</i></div>
+    <table>
+      <tr><th style="width:210px">环节</th><th style="width:150px">强度</th><th>谁掌握</th><th style="width:250px">关键数字(带来源年份)</th></tr>
+      <tr><td class="rank">1. T-glass 低膨胀玻纤布</td><td><div class="minibar l3" style="width:100%"></div></td><td class="who">日东纺(日本)</td><td class="who">市占 <b>&gt;90%</b>;低介电布 &gt;80%;英伟达曾指定独家</td></tr>
+      <tr><td class="rank">2. ABF 树脂膜</td><td><div class="minibar l3" style="width:100%"></div></td><td class="who">味之素(日本)</td><td class="who">占 <b>&gt;95%</b>,载板必备材料</td></tr>
+      <tr><td class="rank">3. 载体铜箔</td><td><div class="minibar l3" style="width:96%"></div></td><td class="who">三井金属(日本)</td><td class="who">近 <b>90%</b> 垄断</td></tr>
+      <tr><td class="rank">4. 磷化铟(InP)衬底</td><td><div class="minibar l3" style="width:94%"></div></td><td class="who">住友 42% / AXT 36% / JX 13%</td><td class="who">三家 <b>&gt;90%</b>;国产化率数据未查到</td></tr>
+      <tr><td class="rank">5. 先进封装(CoWoS 类)</td><td><div class="minibar l3" style="width:88%"></div></td><td class="who">台积电</td><td class="who">占全球 2.5D/3D <b>&gt;90%</b>;缺口约 20%;大陆高端国产化 &lt;10%</td></tr>
+      <tr><td class="rank">6. HBM</td><td><div class="minibar l3" style="width:86%"></div></td><td class="who">SK 海力士 / 三星 / 美光</td><td class="who">三强垄断;长鑫仅风险试产</td></tr>
+      <tr><td class="rank">7. 高端 EML 光芯片</td><td><div class="minibar l2" style="width:80%"></div></td><td class="who">Lumentum / Coherent / 住友</td><td class="who">占 <b>65–70%</b>;国产化率约 4%;交期 12–18 个月</td></tr>
+      <tr><td class="rank">8. SoC 测试机</td><td><div class="minibar l2" style="width:74%"></div></td><td class="who">爱德万 + 泰瑞达</td><td class="who">合计约 <b>90%</b>(爱德万单独 65%)</td></tr>
+      <tr><td class="rank">9. HVLP 高端铜箔</td><td><div class="minibar l2" style="width:70%"></div></td><td class="who">日韩厂商</td><td class="who">占 <b>85–90%</b>;国内高端国产化 &lt;20%</td></tr>
+      <tr><td class="rank">10. UQD 液冷快接头</td><td><div class="minibar l2" style="width:52%"></div></td><td class="who">Staubli ~30% 等 CR5</td><td class="who">CR5 <b>&gt;70%</b>;国产瓶颈在良率</td></tr>
+      <tr><td class="rank">11. BBU 电芯</td><td><div class="minibar l1" style="width:46%"></div></td><td class="who">松下 + 三星 SDI</td><td class="who">合计约 <b>77%</b>;国产蔚蓝锂芯约 7.3%</td></tr>
+      <tr><td class="rank">12. CDU 冷量分配单元</td><td><div class="minibar l1" style="width:36%"></div></td><td class="who">10–20 家,较分散</td><td class="who">订单排到年底,属产能节奏非技术壁垒</td></tr>
+      <tr><td class="rank">13. 高阶 PCB / CCL</td><td><div class="minibar l1" style="width:22%"></div></td><td class="who">CR10 ≈37.8%,分散</td><td class="who">沪电拟投 33 亿 + 胜宏 2026 计划 ≤200 亿 <b>正在扩产</b></td></tr>
+    </table>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">三个可核实的反常识信号<i>比"情绪退潮"更有解释力</i></div>
+    <div class="sig">
+      <div class="card">
+        <h4>① 日东纺:市场惩罚"维持卡点"</h4>
+        <p>2026-05-13 股价盘中<span class="dn">跌超 12%</span>。导火索是净利指引同比 <span class="dn">-59%</span>(低于预期)+ 宣布<span class="hl">不增产 T-glass</span>。<br>
+        但同期电子材料事业营业利润 <span class="up">+39.6%</span>。<br>
+        <b>短期财务变难看,恰恰是卡点地位的证据。</b>该看的是谈判桌位置,不是当期 EPS。</p>
+        <div class="src">来源:日本媒体报道 / 公司指引,2026-05</div>
+      </div>
+      <div class="card">
+        <h4>② 中际旭创:利润与现金流背离</h4>
+        <p>2026H1 归母净利 <span class="up">+241.70%</span>(136.51 亿),但经营现金流 <span class="dn">-44.08%</span>(18.00 亿);总负债 +82%,研发 +96.9%。<br>
+        公司称在"提前锁定供应链产能"。<br>
+        <b>利润 +241% / 现金流 -44% 的剪刀差,需下个报告期验证。</b></p>
+        <div class="src">来源:2026 年半年报,2026-08-21</div>
+      </div>
+      <div class="card">
+        <h4>③ 天孚通信:卡点的直接证据</h4>
+        <p>有源光器件收入 <span class="dn">-19.57%</span>,公司在财报中明确归因"<span class="hl">个别物料阶段性供给短缺</span>",而非需求不足;存货 <span class="up">+103%</span>(战略备货)。<br>
+        <b>一个需求爆发的环节却无法提产 —— 这就是卡点。</b>观察点:Q3 收入是否恢复。</p>
+        <div class="src">来源:半年报 + 投资者关系记录表,2026-08-19</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-t">反证条件<i>出现哪些事实,上面的结论就该被推翻</i></div>
+    <div class="rev">
+      <ul>
+        <li><b>玻纤布:</b>日东纺 2026Q4 福岛新厂按期量产(产能约 3 倍)且继续不涨价 —— 卡点降级为"有壁垒但无定价权"。</li>
+        <li><b>光芯片:</b>国产 6 英寸 InP 产线集中释放、国产 EML 份额升至 15–20%,模块厂从"3 年长协锁量"转为现货采购、交期缩至 3 个月。</li>
+        <li><b>液冷/电源:</b>800VDC 大规模出货推迟至 2028 年后,单机柜功率长期停在 30kW 以下 —— 升级只是温和演进。</li>
+        <li><b>PCB:</b>沪电 33 亿 + 胜宏 180 亿固投集中释放,同期 18 层以上 PCB 增速从 &gt;80% 回落至 20% 以下 —— 定价权叙事被供给打回原形。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>本图未查到的:</b>800G/1.6T 分厂商精确市占率（LightCounting 只公布 TOP10 销售额排序,网传"旭创 800G 占 40–50%"本轮无一手出处,未采信）· CPO 2026 市场规模官方数字 · InP 衬底国产化率 · 英维克/高澜/同飞/申菱液冷单独收入 · 服务器电源大陆厂商全球份额 · 800V HVDC 国内落地订单金额 · 长电 2.5D/3D 具体产能<br>
+    分层标注:<b>黑体数字</b>=事实(公告/年报/官方文件) ｜ 常规=机构观点 ｜ 本图不含实时行情。研究辅助,不构成投资建议。<br>
+    生成:2026-09-23 · industry-chokepoint skill
+  </div>
+
+</div>
+</body>
+</html>
