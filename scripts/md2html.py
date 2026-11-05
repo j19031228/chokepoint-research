@@ -118,12 +118,14 @@ def main():
     src, dst = sys.argv[1], sys.argv[2]
     title = sys.argv[3] if len(sys.argv) > 3 else "报告"
     body = convert(io.open(src, encoding="utf-8").read())
+    import datetime
+    today = datetime.date.today().isoformat()
     doc = f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title><style>{CSS}</style></head>
 <body><div class="doc">{body}
-<div class="foot">本页为自包含 HTML,可直接在浏览器打开或转发 · 生成于 2026-09-23 · 研究辅助,不构成投资建议</div>
+<div class="foot">本页为自包含 HTML,可直接在浏览器打开或转发 · 生成于 {today} · 研究辅助,不构成投资建议</div>
 </div></body></html>"""
     io.open(dst, "w", encoding="utf-8").write(doc)
     print("written:", dst, len(doc), "chars")

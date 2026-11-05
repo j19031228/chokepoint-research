@@ -338,12 +338,12 @@
 
     <div class="note"><b>一个提醒</b>:网上对这类仓库的介绍常有错(比如某仓库被说有 <code>bottleneck-scorecard.json</code>,实际没有)。<b>以 <code>gh api</code> 实读为准。</b></div>
 
-    <div class="foot">讲解内容归纳自公开方法论 + 10 个开源项目的实读 · 生成 2026-09-23</div>
+    <div class="foot">讲解内容归纳自公开方法论 + 10 个开源项目的实读 · 生成 2026-09-23 · 面板数据更新至 2026-11-05</div>
   </div>
 
   <!-- ============ 面板 ============ -->
   <div class="page" id="panel">
-    <div class="note"><b>这是静态快照,不会自动更新。</b>数字是 2026-09-23 那次检索的结果,之后行情、财报、公告都会变。财务口径为 2026 年半年报。</div>
+    <div class="note"><b>这是静态快照,不会自动更新。</b>数字已按 <b>2026-11-05</b> 重跑更新,财务口径为 <b>2026 年三季报(1–9 月累计)</b>。上一版为 2026-09-23(半年报口径),对比见<a href="2026-11-05-A股AI基础设施链卡点.html">2026 三季报更新版报告</a>。</div>
 
     <h2>链条地图<small>点任意一层展开</small></h2>
     <div class="chain" id="chain"></div>
@@ -414,7 +414,7 @@
       </ul></div>
     </details>
 
-    <div class="foot">研究辅助,不构成投资建议 · 数据来源:各公司 2026 年半年报、SEC/港交所文件、机构公开摘要 · 生成 2026-09-23</div>
+    <div class="foot">研究辅助,不构成投资建议 · 数据来源:各公司 2026 年三季报、SEC/港交所文件、机构公开摘要 · 数据截止 2026-11-05</div>
   </div>
 </div>
 
@@ -469,19 +469,19 @@ const CHAIN = [
 ];
 
 const ROWS = [
-  {rank:1,name:"T-glass 低膨胀玻纤布",score:3,owner:"日东纺(日本)",num:"市占 >90%;低介电布 >80%;NER 布约 100%",cn:"中材科技 / 宏和科技(占比均小)",scn:1},
+  {rank:1,name:"T-glass 低膨胀玻纤布",score:3,owner:"日东纺(日本)",num:"市占 >90%;FY2026 已实施涨价;3 倍产能口径落到 FY2028",cn:"中材科技(一期 3500 万米 2026Q4 起投产)/ 宏和科技",scn:1},
   {rank:2,name:"ABF 树脂膜",score:3,owner:"味之素(日本)",num:"占 >95%,载板必备材料",cn:"无 A 股直接标的",scn:0},
-  {rank:3,name:"载体铜箔(可剥铜)",score:3,owner:"三井金属(日本)",num:"近 90% 垄断",cn:"德福科技(已在 1.6T 光模块量产)",scn:1},
+  {rank:3,name:"载体铜箔(可剥铜)",score:3,owner:"三井金属(日本)",num:"近 90% 垄断;国内厂 9M 毛利率仅 9.96%",cn:"德福科技(已在 1.6T 光模块量产)",scn:1},
   {rank:4,name:"磷化铟(InP)衬底",score:3,owner:"住友 42% / AXT 36% / JX 13%",num:"三家合计 >90%;国产化率 [未查到]",cn:"[未查到]",scn:0},
-  {rank:5,name:"先进封装(CoWoS 类)",score:3,owner:"台积电(占 2.5D/3D >90%)",num:"缺口约 20%;大陆高端国产化 <10%",cn:"长电科技 / 通富微电 / 盛合晶微",scn:1},
-  {rank:6,name:"HBM",score:3,owner:"SK 海力士 / 三星 / 美光",num:"三强垄断;2026 为价格盘整年",cn:"长鑫存储(未上市,仅风险试产)",scn:0},
-  {rank:7,name:"高端 EML 光芯片",score:2,owner:"Lumentum / Coherent / 住友",num:"占 65–70%;国产化率约 4%;交期 12–18 个月",cn:"源杰科技 / 长光华芯 / 仕佳光子",scn:2},
+  {rank:5,name:"先进封装(CoWoS 类)",score:3,owner:"台积电(占 2.5D/3D >90%)",num:"2026 年底 11.5–13 万片/月;缺口 >20%,延续至 2027 底",cn:"长电科技 / 通富微电 / 盛合晶微",scn:1},
+  {rank:6,name:"HBM",score:3,owner:"SK 海力士 / 三星 / 美光",num:"三强垄断;长鑫 HBM3E 计划 2026Q4 末量产,良率约 20%",cn:"长鑫存储(未上市)",scn:0},
+  {rank:7,name:"高端 EML 光芯片",score:2,owner:"Lumentum / Coherent / 住友",num:"占 65–70%;200G 国产仍客户验证;交期 12–18 个月",cn:"源杰科技 / 长光华芯 / 仕佳光子",scn:2},
   {rank:8,name:"SoC 测试机",score:2,owner:"爱德万 + 泰瑞达",num:"合计约 90%(爱德万单独 65%)",cn:"长川科技 / 华峰测控 / 精智达",scn:2},
-  {rank:9,name:"HVLP 高端铜箔",score:2,owner:"日韩厂商",num:"占 85–90%;国内高端国产化 <20%",cn:"铜冠铜箔 / 德福科技",scn:2},
+  {rank:9,name:"HVLP 高端铜箔",score:2,owner:"日韩厂商",num:"占 85–90%;铜冠 9M 毛利率 8.63%、现金流为负",cn:"铜冠铜箔 / 德福科技",scn:2},
   {rank:10,name:"UQD 液冷快接头",score:2,owner:"Staubli ~30% 等 CR5",num:"CR5 >70%;国产瓶颈在良率",cn:"中航光电 / 永贵电器",scn:2},
   {rank:11,name:"BBU 电芯",score:2,owner:"松下 + 三星 SDI",num:"合计约 77%(日韩合计 80%+)",cn:"蔚蓝锂芯(约 7.3%)/ 亿纬锂能(送样)",scn:2},
-  {rank:12,name:"CDU 冷量分配单元",score:1,owner:"10–20 家,较分散",num:"订单排到年底 —— 属产能节奏,非技术壁垒",cn:"英维克 / 申菱环境 / 高澜股份",scn:1},
-  {rank:13,name:"高阶 PCB / CCL",score:1,owner:"CR10 ≈37.8%,分散",num:"沪电拟投 33 亿 + 胜宏 2026 计划 ≤200 亿 —— 正在扩产",cn:"沪电股份 / 胜宏科技 / 生益科技",scn:2}
+  {rank:12,name:"CDU 冷量分配单元",score:1,owner:"10–20 家,较分散",num:"英维克 9M 营收 +22.94%、归母 −7.62% —— 产能节奏非壁垒",cn:"英维克 / 申菱环境 / 高澜股份",scn:1},
+  {rank:13,name:"高阶 PCB / CCL",score:1,owner:"CR10 ≈37.8%,分散",num:"沪电 9M 营收 +71.88%、毛利 40.90%;33 亿项目 2 年建设期",cn:"沪电股份 / 胜宏科技 / 生益科技",scn:2}
 ];
 
 document.getElementById("chain").innerHTML = CHAIN.map(c=>

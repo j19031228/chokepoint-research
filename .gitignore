@@ -1,2 +1,4 @@
 reports/_*.png
 __pycache__/
+scripts/shot*.png
+data_fin_latest.json
